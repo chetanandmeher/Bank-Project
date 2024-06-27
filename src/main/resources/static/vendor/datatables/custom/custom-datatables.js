@@ -21,6 +21,15 @@ $(function(){
 	});
 });
 
+// district table vertical scroll
+$(function(){
+	$('#districtTableScrollVertical').DataTable({
+		"scrollY": "700px",
+		"scrollCollapse": true,
+		"paging": false,
+		"bInfo" : false,
+	});
+});
 
 
 // Highlighting rows and columns
@@ -57,6 +66,25 @@ $(function(){
 	});
 });
 
+// Using district table API in callbacks
+   $(function(){
+   	$('#districtTableApiCallbacks').DataTable({
+   		"lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50, "All"]],
+   		"language": {
+   			"lengthMenu": "Display _MENU_ Records Per Page",
+   		},
+   		"scrollY": "700px",
+        "scrollCollapse": true,
+        "paging": false,
+        "bInfo" : false,
+   		"initComplete": function(){
+   			var api = this.api();
+   			api.$('td').on('click', function(){
+   			api.search(this.innerHTML).draw();
+   		});
+   		}
+   	});
+   });
 
 // Hiding Search and Show entries
 $(function(){

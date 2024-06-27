@@ -51,6 +51,11 @@ public class HomeController {
         return "state-table";
     }
 
+    @GetMapping("/district-table")
+    public String DistrictTable() {
+        return "district-table";
+    }
+
     @GetMapping("/rough")
     public String AccountForm() {
         return "rough";
