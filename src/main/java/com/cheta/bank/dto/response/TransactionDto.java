@@ -1,2 +1,4 @@
-package com.cheta.bank.dto.response;public class TransactionDto {
+package com.cheta.bank.dto.response;
+
+public class TransactionDto {
 }

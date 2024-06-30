@@ -66,9 +66,9 @@ $(function(){
 	});
 });
 
-// Using district table API in callbacks
+// Using vertical Scroll +  API in callbacks
    $(function(){
-   	$('#districtTableApiCallbacks').DataTable({
+   	$('#verticalScrollApiCallbacks').DataTable({
    		"lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50, "All"]],
    		"language": {
    			"lengthMenu": "Display _MENU_ Records Per Page",

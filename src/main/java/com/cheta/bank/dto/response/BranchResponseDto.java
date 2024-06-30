@@ -1,2 +1,4 @@
-package com.cheta.bank.dto.response;public class BranchResponseDto {
+package com.cheta.bank.dto.response;
+
+public class BranchResponseDto {
 }

@@ -1,4 +1,4 @@
 package com.cheta.bank.dto.response;
 
-public class DistrictResposneDto {
+public class DistrictResponseDto {
 }

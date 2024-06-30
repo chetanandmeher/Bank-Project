@@ -1,10 +1,19 @@
 package com.cheta.bank.controller;
 
+import com.cheta.bank.dto.response.UserResponseDto;
+import com.cheta.bank.service.impl.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
+
+//    @Autowired
+//    UserService userService;
 
     @GetMapping("/")
     public String login() {
@@ -31,33 +40,27 @@ public class HomeController {
         return "tables";
     }
 
-    @GetMapping("/users-table")
-    public String UsersTable() {
-        return "users-table";
-    }
-
-    @GetMapping("/user-form")
-    public String UserForm() {
-        return "user-form";
-    }
 
     @GetMapping("/accounts-table")
-    public String AccountsTable() {
+    public String accountsTable() {
         return "accounts-table";
     }
 
     @GetMapping("/state-table")
-    public String StateTable() {
+    public String stateTable() {
         return "state-table";
     }
 
     @GetMapping("/district-table")
-    public String DistrictTable() {
+    public String districtTable() {
         return "district-table";
     }
 
-    @GetMapping("/rough")
-    public String AccountForm() {
-        return "rough";
+    @GetMapping("/city-table")
+    public String cityTable() {
+        return "city-table";
     }
+
+
+
 }
