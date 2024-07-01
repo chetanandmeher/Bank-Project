@@ -41,11 +41,6 @@ public class HomeController {
     }
 
 
-    @GetMapping("/accounts-table")
-    public String accountsTable() {
-        return "accounts-table";
-    }
-
     @GetMapping("/state-table")
     public String stateTable() {
         return "state-table";

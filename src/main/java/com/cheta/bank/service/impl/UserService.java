@@ -37,8 +37,8 @@ public class UserService implements IUserService {
         // Convert each user to a user response DTO and add it to a list
         // Return the list of user response DTOs
         return users.stream()
-                .map(user -> convertUserToUserResponseDto(user, userCredentialRepository.getUserCredentialByUserId(user.getId())))
-                .toList();
+                    .map(user -> convertUserToUserResponseDto(user, userCredentialRepository.getUserCredentialByUserId(user.getId())))
+                    .toList();
     }
 
     @Override

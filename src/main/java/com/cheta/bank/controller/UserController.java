@@ -40,7 +40,7 @@ public class UserController {
                 .type("SA")
                 .balance(10000.0)
                 .rateOfInterest(5.9f)
-                .branchId(1)
+                .branchName("SambalPur")
                 .build();
         accountResponseDto1.setOpeningDate(LocalDate.now());
 
@@ -49,7 +49,7 @@ public class UserController {
                 .type("SA")
                 .balance(10000.0)
                 .rateOfInterest(5.9f)
-                .branchId(1)
+                .branchName("NYC")
                 .build();
         accountResponseDto2.setOpeningDate(LocalDate.now());
 
@@ -74,7 +74,7 @@ public class UserController {
                 .type("SA")
                 .balance(10000.0)
                 .rateOfInterest(5.9f)
-                .branchId(1)
+                .branchName("sambalpur")
                 .build();
         accountResponseDto1.setOpeningDate(LocalDate.now());
 
@@ -83,7 +83,7 @@ public class UserController {
                 .type("FD")
                 .balance(5467.0)
                 .rateOfInterest(4.5f)
-                .branchId(1)
+                .branchName("NYC")
                 .build();
         accountResponseDto2.setOpeningDate(LocalDate.now());
 

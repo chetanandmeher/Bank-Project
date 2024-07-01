@@ -1,94 +1,71 @@
-
-// Sample data for states in JSON format
-var statesData = JSON.parse(`[
-    { "id": "state1", "name": "Chhattisgarh" },
-    { "id": "state2", "name": "Odisha" },
-    { "id": "state3", "name": "Maharashtra" },
-    { "id": "state4", "name": "Madhya Pradesh" }
-]`);
-
-// Function to dynamically generate table rows
-function generateTableRows() {
-    var tbody = document.getElementById('stateTableBody');
-    tbody.innerHTML = ''; // Clear existing rows
-
-    statesData.forEach(function(state) {
-        var row = document.createElement('tr');
-
-        // Create table data for state name
-        var stateCell = document.createElement('td');
-        stateCell.id = state.id;
-        stateCell.innerText = state.name;
-        row.appendChild(stateCell);
-
-        // Create table data for Edit button
-        var actionCell = document.createElement('td');
-        actionCell.id = state.id + '-action';
-        actionCell.style.textAlign = 'right'; // Align to the right
-        var editButton = document.createElement('button');
-        editButton.className = 'btn btn-primary edit-btn';
-        editButton.innerText = 'Edit';
-        editButton.onclick = function() {
-            editRow(state.id);
-        };
-        actionCell.appendChild(editButton);
-        row.appendChild(actionCell);
-
-        tbody.appendChild(row);
+// Ensure the script runs after the DOM is fully loaded
+window.addEventListener('DOMContentLoaded', function() {
+    // Select all elements with the class 'edit-button' and attach a click event listener to each
+    document.querySelectorAll('.edit-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            // When an edit button is clicked, call the toggleEditMode function
+            toggleEditMode(this);
+        });
     });
-}
 
-// Function to edit row
-function editRow(stateId) {
-    var stateCell = document.getElementById(stateId);
-    var currentState = stateCell.innerText;
+    // Function to toggle between 'Edit' and 'Save' mode
+    function toggleEditMode(btn) {
+        // Get the closest table row to the clicked button
+        var row = btn.closest('tr');
 
-    // Replace text with input field
-    var inputField = document.createElement('input');
-    inputField.type = 'text';
-    inputField.className = 'form-control';
-    inputField.value = currentState;
+        // Check if the button's text is 'Edit'
+        if (btn.textContent === 'Edit') {
+            // Loop through each table cell in the row
+            row.querySelectorAll('td').forEach(function(cell) {
+                // Skip cells that contain the button
+                if (cell.querySelector('button') === null) {
+                    // Get the current text value of the cell
+                    var value = cell.textContent;
+                    // Replace the cell's content with an input field containing the current text value
+                    cell.innerHTML = '<input type="text" class="form-control" value="' + value + '">';
+                }
+            });
+            // Change the button's text to 'Save'
+            btn.textContent = 'Save';
+        } else {
+            // If the button's text is 'Save'
+            // Loop through each table cell in the row
+            row.querySelectorAll('td').forEach(function(cell) {
+                // Skip cells that contain the button
+                if (cell.querySelector('button') === null) {
+                    // Get the value of the input field in the cell
+                    var value = cell.querySelector('input').value;
+                    // Replace the input field with the input value as text
+                    cell.textContent = value;
+                }
+            });
+            // Change the button's text to 'Edit'
+            btn.textContent = 'Edit';
 
-    // Replace cell content with input field
-    stateCell.innerHTML = '';
-    stateCell.appendChild(inputField);
+            // Prepare the updated data to be sent to the server
+            var updatedData = {
+                accountNumber: row.cells[0].textContent,
+                customerUsername: row.cells[1].textContent,
+                type: row.cells[2].textContent,
+                branchName: row.cells[3].textContent,
+                rateOfInterest: row.cells[4].textContent,
+                balance: row.cells[5].textContent
+            };
 
-    // Replace Edit button with Save button
-    var actionCell = document.getElementById(stateId + '-action');
-    actionCell.innerHTML = '';
-    var saveButton = document.createElement('button');
-    saveButton.className = 'btn btn-success save-btn';
-    saveButton.innerText = 'Save';
-    saveButton.onclick = function() {
-        saveRow(stateId);
-    };
-    actionCell.appendChild(saveButton);
-}
+            // Log the updated data to the console (for debugging purposes)
+            console.log(updatedData);
 
-// Function to save row
-function saveRow(stateId) {
-    var inputField = document.getElementById(stateId).querySelector('input');
-    var newValue = inputField.value;
-
-    // Update the state in the data array
-    var state = statesData.find(s => s.id === stateId);
-    state.name = newValue;
-
-    // Replace input field with updated text
-    var stateCell = document.getElementById(stateId);
-    stateCell.innerHTML = newValue;
-
-    // Replace Save button with Edit button
-    var actionCell = document.getElementById(stateId + '-action');
-    actionCell.innerHTML = '';
-    var editButton = document.createElement('button');
-    editButton.className = 'btn btn-primary edit-btn';
-    editButton.innerText = 'Edit';
-    editButton.onclick = function() {
-        editRow(stateId);
-    };
-    actionCell.appendChild(editButton);
-}
-
-// Call the function to generate initial table rows
-generateTableRows();
+            // Uncomment and modify the AJAX call to save the updated data to the server
+            // fetch('your-server-endpoint', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(updatedData)
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log('Data saved successfully:', data))
+            // .catch(error => console.error('Error saving data:', error));
+        }
+    }
+});

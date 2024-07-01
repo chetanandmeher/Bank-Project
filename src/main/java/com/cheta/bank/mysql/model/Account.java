@@ -20,8 +20,8 @@ public class Account {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "user_id")
+    private Integer userId;
 
     @Column(name = "account_type")
     private String accountType;

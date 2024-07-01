@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -253,25 +253,30 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="scrollVertical" class="table custom-table">
+                                    <table id="verticalScrollApiCallbacks" class="table custom-table">
                                         <thead>
-                                        <tr>
-                                            <th>Account Number</th>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Branch</th>
-                                            <th>ROI</th>
-                                            <th>balance</th>
+                                            <tr>
+                                                <th>Account Number</th>
+                                                <th>Username</th>
+                                                <th>Type</th>
+                                                <th>Branch</th>
+                                                <th>ROI</th>
+                                                <th>balance</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>121211140001</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>SA</td>
-                                            <td>Sambalpur</td>
-                                            <td>7.3</td>
-                                            <td>9968875412.78</td>
-                                        </tr>
+                                            <tr th:each="account : ${accounts}" th:data-id="${account.accountNumber}">
+                                                <td th:text="${account.accountNumber}"></td>
+                                                <td th:text="${account.customerUsername}"></td>
+                                                <td th:text="${account.type}"></td>
+                                                <td th:text="${account.branchName}"></td>
+                                                <td th:text="${account.rateOfInterest}"></td>
+                                                <td th:text="${account.balance}"></td>
+                                                <td id="editButtonCell">
+                                                    <button id="editButton" type="button" class="btn btn-primary edit-btn"
+                                                            th:data-id="${account.accountNumber}">Edit</button>
+                                                </td> <!-- Added column with edit button-->
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -306,6 +311,10 @@
 <!-- *************
     ************ Required JavaScript Files *************
 ************* -->
+
+<!-- Required Js for account table-->
+<script src="/js/account-table.js"></script>
+
 <!-- Required jQuery first, then Bootstrap Bundle JS -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>

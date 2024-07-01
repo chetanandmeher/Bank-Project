@@ -13,9 +13,11 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountResponseDto {
     private String accountNumber;
+    private String customerUsername;
     private String type;
     private Double balance;
     private Float rateOfInterest;
-    private Integer branchId;
+    private String branchName;
     private LocalDate openingDate;
+    private Integer userId;
 }

@@ -7,4 +7,5 @@ public interface UserCredentialRepository extends CrudRepository<UserCredential,
     public UserCredential getUserCredentialByUserId(Integer userId);
 
     public UserCredential findByUsername(String username);
+    public UserCredential findByUserId(Integer userId);
 }
