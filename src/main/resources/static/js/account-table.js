@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var actionCell = row.children[6];
             actionCell.innerHTML ="";
             var saveButton = document.createElement('button');
-            saveButton.className = 'btn btn-success save-btn';
+            saveButton.className = 'btn btn-success btn-sm save-btn';
             saveButton.innerText = 'Save';
             saveButton.onclick = function() {
                 saveRow(dataId);

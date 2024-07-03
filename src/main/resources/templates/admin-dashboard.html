@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<!-- Required meta tags -->
@@ -155,7 +155,7 @@
 					</ol>
 					<!-- Breadcrumb end -->
 
-					<!-- Header actions ccontainer start -->
+					<!-- Header actions container start -->
 					<div class="header-actions-container">
 
 						<!-- Search container start -->
@@ -210,7 +210,7 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-									<span class="user-name d-none d-md-block">Chetanand Meher/span>
+									<span class="user-name d-none d-md-block" th:text="${loginRequestDto.username}">User</span>
 									<span class="avatar">
 										<img src="/images/user.png" alt="Admin Templates">
 										<span class="status online"></span>

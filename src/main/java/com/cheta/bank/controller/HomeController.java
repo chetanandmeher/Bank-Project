@@ -12,19 +12,6 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-//    @Autowired
-//    UserService userService;
-
-    @GetMapping("/")
-    public String login() {
-        return "index";
-    }
-
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard";
-    }
-
     @GetMapping("/sign-up")
     public String signUp() {
         return "signup";

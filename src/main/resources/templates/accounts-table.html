@@ -238,7 +238,7 @@
 
         <!-- Content wrapper scroll start -->
         <div class="content-wrapper-scroll">
-
+`
             <!-- Content wrapper start -->
             <div class="content-wrapper">
 
@@ -257,7 +257,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Account Number</th>
-                                                <th>Username</th>
+                                                <th>Username</th>`
                                                 <th>Type</th>
                                                 <th>Branch</th>
                                                 <th>ROI</th>
@@ -272,8 +272,8 @@
                                                 <td th:text="${account.branchName}"></td>
                                                 <td th:text="${account.rateOfInterest}"></td>
                                                 <td th:text="${account.balance}"></td>
-                                                <td id="editButtonCell">
-                                                    <button id="editButton" type="button" class="btn btn-primary edit-btn"
+                                                <td id="editButtonCell" style="text-align: right;">
+                                                    <button id="editButton" type="button" class="btn btn-primary btn-sm edit-btn"
                                                             th:data-id="${account.accountNumber}">Edit</button>
                                                 </td> <!-- Added column with edit button-->
                                             </tr>

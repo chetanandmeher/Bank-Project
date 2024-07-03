@@ -1,6 +1,5 @@
 package com.cheta.bank.dto.response;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
