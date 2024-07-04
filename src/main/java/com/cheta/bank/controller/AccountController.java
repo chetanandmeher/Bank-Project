@@ -1,8 +1,12 @@
 package com.cheta.bank.controller;
 
+import com.cheta.bank.dto.request.LoginRequestDto;
 import com.cheta.bank.dto.response.AccountResponseDto;
+import com.cheta.bank.mysql.model.UserCredential;
+import com.cheta.bank.repository.UserCredentialRepository;
 import com.cheta.bank.service.impl.AccountService;
 import com.cheta.bank.service.impl.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +19,10 @@ public class AccountController {
 
     @Autowired
     AccountService accountService;
+    @Autowired
+    UserCredentialRepository userCredentialRepository;
 
-    @GetMapping("/accounts-table")
-    public String accountsTable(Model model) {
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAllAccounts();
-        model.addAttribute("accounts", accountResponseDtoList);
-        return "accounts-table";
-    }
+
 
 
 }

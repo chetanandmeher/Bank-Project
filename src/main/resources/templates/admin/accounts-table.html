@@ -70,7 +70,7 @@
 
         <!-- Sidebar brand starts -->
         <div class="sidebar-brand">
-            <a href="index.html" class="logo">
+            <a href="../index.html" class="logo">
                 <img src="/images/logo.svg" alt="Admin Dashboards"/>
             </a>
         </div>
@@ -88,7 +88,7 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="index.html">Analytics</a>
+                                    <a href="../index.html">Analytics</a>
                                 </li>
                                 <li>
                                     <a href="reports.html">Reports</a>
@@ -152,7 +152,7 @@
             <ol class="breadcrumb d-md-flex d-none">
                 <li class="breadcrumb-item">
                     <i class="bi bi-house"></i>
-                    <a href="index.html">Home</a>
+                    <a href="../index.html">Home</a>
                 </li>
                 <li class="breadcrumb-item">Accounts</li>
             </ol>
@@ -193,19 +193,19 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end mini" aria-labelledby="countries">
                             <div class="country-container">
-                                <a href="index.html">
+                                <a href="../index.html">
                                     <img src="/images/flags/1x1/us.svg" alt="Clean Admin Dashboards"/>
                                 </a>
-                                <a href="index.html">
+                                <a href="../index.html">
                                     <img src="/images/flags/1x1/in.svg" alt="Google Dashboards"/>
                                 </a>
-                                <a href="index.html">
+                                <a href="../index.html">
                                     <img src="/images/flags/1x1/gb.svg" alt="AI Admin Dashboards"/>
                                 </a>
-                                <a href="index.html">
+                                <a href="../index.html">
                                     <img src="/images/flags/1x1/tr.svg" alt="Modern Dashboards"/>
                                 </a>
-                                <a href="index.html">
+                                <a href="../index.html">
                                     <img src="/images/flags/1x1/ca.svg" alt="Best Admin Dashboards"/>
                                 </a>
                             </div>
@@ -261,7 +261,8 @@
                                                 <th>Type</th>
                                                 <th>Branch</th>
                                                 <th>ROI</th>
-                                                <th>balance</th>
+                                                <th>Balance</th>
+                                                <th>Opening Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -272,6 +273,7 @@
                                                 <td th:text="${account.branchName}"></td>
                                                 <td th:text="${account.rateOfInterest}"></td>
                                                 <td th:text="${account.balance}"></td>
+                                                <td th:text="${account.openingDate}"></td>
                                                 <td id="editButtonCell" style="text-align: right;">
                                                     <button id="editButton" type="button" class="btn btn-primary btn-sm edit-btn"
                                                             th:data-id="${account.accountNumber}">Edit</button>

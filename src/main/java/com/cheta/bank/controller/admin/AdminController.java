@@ -1,34 +1,52 @@
-package com.cheta.bank.controller;
+package com.cheta.bank.controller.admin;
 
+import com.cheta.bank.dto.request.LoginRequestDto;
 import com.cheta.bank.dto.response.AccountResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
+import com.cheta.bank.repository.UserCredentialRepository;
+import com.cheta.bank.service.impl.AccountService;
 import com.cheta.bank.service.impl.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class AdminController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    UserCredentialRepository userCredentialRepository;
+    @Autowired
+    AccountService accountService;
 
-    @GetMapping("/users-table")
+    // Dashboard for admin
+    @GetMapping("/admins/dashboard")
+    public String getAdminDashboard(Model model, HttpSession session) {
+
+        // Get the login request details from the session
+        LoginRequestDto loginRequestDto = (LoginRequestDto) session.getAttribute("loginRequestDto");
+        model.addAttribute("loginRequestDto", loginRequestDto);
+        return "/admin/dashboard";
+    }
+
+    // User Table for admin
+    @GetMapping("/admins/users")
     public String getUsers(Model model) {
-        System.out.println();
-        System.out.println("calling user service");
-        System.out.println();
         List<UserResponseDto> usersResponseDtoList = userService.getAllUsers();
         model.addAttribute("users", usersResponseDtoList);
         // Return the view name
-        return "users-table";
+        return "/admin/users-table";
     }
 
+    // User Details for admin
     @GetMapping("/users/{username}")
     public String userForm(Model model, @PathVariable String username) {
         // user details
@@ -59,9 +77,24 @@ public class UserController {
         model.addAttribute("user", userResponseDto);
         model.addAttribute("accounts", accountResponseDtoList);
 
-        return "user-details";
+        return "/admin/user-details";
 
     }
+
+    // Accounts Table for admin
+    @GetMapping("/admins/accounts")
+    public String accountsTable(Model model, HttpSession session) {
+        // ge the login Request dto from session
+        LoginRequestDto loginRequestDto = (LoginRequestDto) session.getAttribute("loginRequestDto");
+
+        // get all accounts in the database and add it to the model
+        List<AccountResponseDto> accountResponseDtoList = accountService.getAllAccounts();
+        model.addAttribute("accounts", accountResponseDtoList);
+        // return the view name
+        return "/admin/accounts-table";
+
+    }
+
 
     @GetMapping("/rough")
     public String rough(Model model) {

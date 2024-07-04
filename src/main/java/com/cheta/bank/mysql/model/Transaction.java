@@ -18,23 +18,30 @@ public class Transaction {
     @Column(name = "id")
     private Integer id;
 
+
+    @Column(name = "transaction_id")
+    private String transactionId;
+
     @Column(name = "user_id")
     private Integer userId;
 
     @Column(name = "account_number")
     private String accountNumber;
 
+    @Column(name = "amount")
+    private Double amount;
+
     @Column(name = "remark")
     private String remark;
 
     @Column(name = "transaction_date_time")
-    private LocalDateTime transactionDateTime;
+    private LocalDateTime dateTime;
 
     @Column(name = "transaction_type")
-    private String transactionType;
+    private String type;
 
     @Column(name = "transaction_status")
-    private String transactionStatus;
+    private String status;
 
     @Column(name = "created_by")
     private Integer createdBy;

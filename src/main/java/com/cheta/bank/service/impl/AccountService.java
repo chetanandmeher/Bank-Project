@@ -42,14 +42,25 @@ public class AccountService implements IAccountService {
         }
     }
 
+    @Override
+    public List<AccountResponseDto> getAllAccountsByUserId(Integer userId) {
+        List<Account> accountList = accountRepository.findAllByUserId(userId);
+        if (!accountList.isEmpty()) {
+            return accountList.stream().map(this::convertAccountToAccountRepsonDto).toList();
+        }
+        return null;
+    }
+
+
     private AccountResponseDto convertAccountToAccountRepsonDto(Account account) {
-        return AccountResponseDto.builder()
+            return AccountResponseDto.builder()
                 .accountNumber(account.getAccountNumber())
                 .type(account.getAccountType())
                 .balance(account.getBalance())
                 .rateOfInterest(account.getRateOfInterest())
                 .branchName(branchRepository.findById(account.getBranchId()).get().getName())
                 .customerUsername(userCredentialRepository.findByUserId(account.getUserId()).getUsername())
+                .openingDate(account.getOpeningDate())
                 .build();
     }
 }

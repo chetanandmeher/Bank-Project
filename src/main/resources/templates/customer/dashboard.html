@@ -67,7 +67,7 @@
 
 				<!-- Sidebar brand starts -->
 				<div class="sidebar-brand">
-					<a href="index.html" class="logo">
+					<a href="../index.html" class="logo">
 						<img src="/images/logo.svg" alt="Admin Dashboards" />
 					</a>
 				</div>
@@ -77,55 +77,23 @@
 				<div class="sidebar-menu">
 					<div class="sidebarMenuScroll">
 						<ul>
-							<li class="sidebar-dropdown active">
+							<li>
 								<a href="#">
 									<i class="bi bi-house"></i>
-									<span class="menu-text">Dashboards</span>
-								</a>
-								<div class="sidebar-submenu">
-									<ul>
-										<li>
-											<a href="index.html" class="current-page">Analytics</a>
-										</li>
-										<li>
-											<a href="reports.html">Reports</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li>
-								<a href="/users-table">
-									<i class="bi bi-people"></i>
-									<span class="menu-text">Users</span>
+									<span class="menu-text">Home</span>
 								</a>
 							</li>
 							<li>
-								<a href="/accounts-table">
+								<a th:href="@{/customers/accounts}">
 									<i class="bi bi-person-square"></i>
 									<span class="menu-text">Accounts</span>
 								</a>
 							</li>
-							<li class="sidebar-dropdown">
-								<a href="#">
-									<i class="bi bi-bank"></i>
-									<span class="menu-text">Master</span>
+							<li>
+								<a href="/customers/transactions">
+									<i class="bi bi-arrow-left-right"></i>
+									<span class="menu-text">Transaction</span>
 								</a>
-								<div class="sidebar-submenu">
-									<ul>
-										<li>
-											<a href="/state-table">States</a>
-										</li>
-										<li>
-											<a href="/district-table">Districts</a>
-										</li>
-										<li>
-											<a href="buttons.html">Cities</a>
-										</li>
-										<li>
-											<a href="badges.html">Branches</a>
-										</li>
-									</ul>
-								</div>
 							</li>
 						</ul>
 					</div>
@@ -149,7 +117,7 @@
 					<ol class="breadcrumb d-md-flex d-none">
 						<li class="breadcrumb-item">
 							<i class="bi bi-house"></i>
-							<a href="index.html">Home</a>
+							<a href="../index.html">Home</a>
 						</li>
 						<li class="breadcrumb-item breadcrumb-active" aria-current="page">Admin</li>
 					</ol>
@@ -190,19 +158,19 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-end mini" aria-labelledby="countries">
 									<div class="country-container">
-										<a href="index.html">
+										<a href="../index.html">
 											<img src="/images/flags/1x1/us.svg" alt="Clean Admin Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../index.html">
 											<img src="/images/flags/1x1/in.svg" alt="Google Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../index.html">
 											<img src="/images/flags/1x1/gb.svg" alt="AI Admin Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../index.html">
 											<img src="/images/flags/1x1/tr.svg" alt="Modern Dashboards" />
 										</a>
-										<a href="index.html">
+										<a href="../index.html">
 											<img src="/images/flags/1x1/ca.svg" alt="Best Admin Dashboards" />
 										</a>
 									</div>
@@ -210,7 +178,8 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-									<span class="user-name d-none d-md-block" th:text="${loginRequestDto.username}">User</span>
+									<span class="user-name d-none d-md-block" th:text="${loginRequestDto.username}" >User</span> <!---->
+
 									<span class="avatar">
 										<img src="/images/user.png" alt="Admin Templates">
 										<span class="status online"></span>

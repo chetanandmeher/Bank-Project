@@ -12,6 +12,11 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    @GetMapping("/customer-dashboard")
+    public String customerDashboard(){
+        return "/customer/customer-dashboard";
+    }
+
     @GetMapping("/sign-up")
     public String signUp() {
         return "signup";
@@ -22,25 +27,20 @@ public class HomeController {
         return "forgot-password";
     }
 
-    @GetMapping("/tables")
-    public String tables() {
-        return "tables";
-    }
-
 
     @GetMapping("/state-table")
     public String stateTable() {
-        return "state-table";
+        return "/admin/state-table";
     }
 
     @GetMapping("/district-table")
     public String districtTable() {
-        return "district-table";
+        return "/admin/district-table";
     }
 
     @GetMapping("/city-table")
     public String cityTable() {
-        return "city-table";
+        return "/admin/city-table";
     }
 
 

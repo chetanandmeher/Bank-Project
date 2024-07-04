@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
+
     // Function to edit row
     function editRow(dataId) {
         var row = document.querySelector(`[data-id="${dataId}"]`);
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 cell.innerHTML = '';
                 cell.appendChild(input);
             // change the edit button to save button
-            var actionCell = row.children[6];
+            var actionCell = row.children[row.cells.length - 1];
             actionCell.innerHTML ="";
             var saveButton = document.createElement('button');
             saveButton.className = 'btn btn-success btn-sm save-btn';
@@ -43,10 +44,12 @@ document.addEventListener("DOMContentLoaded", function() {
         var row = document.querySelector(`[data-id="${dataId}"]`);
         var cells = row.querySelectorAll("td");
         cells.forEach(function(cell) {
+            // skip the button
             if(!cell.querySelector("#editButton")) {
-                cell.innerText = cell.querySelector('input').value;
+                var value = cell.querySelector('input').value;
+                cell.innerText = value;
                 // change the save button to edit button
-                var actionCell = row.children[6];
+                var actionCell = row.children[row.cells.length - 1];
                 actionCell.innerHTML ="";
                 var editButton = document.createElement('button');
                 editButton.className = 'btn btn-primary edit-btn';
