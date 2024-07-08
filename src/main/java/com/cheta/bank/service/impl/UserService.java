@@ -1,5 +1,6 @@
 package com.cheta.bank.service.impl;
 
+import com.cheta.bank.dto.response.UserCredentialResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 
 import com.cheta.bank.mysql.model.User;
@@ -48,6 +49,12 @@ public class UserService implements IUserService {
         Optional<User> user = userRepository.findById(userCredential.getUserId());
         // Convert user to userResponseDto and return it.
         return convertUserToUserResponseDto(user.get(), userCredential);
+    }
+
+    @Override
+    public UserResponseDto getByUserId(Integer userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return convertUserToUserResponseDto(user.get(), userCredentialRepository.getUserCredentialByUserId(user.get().getId()));
     }
 
 

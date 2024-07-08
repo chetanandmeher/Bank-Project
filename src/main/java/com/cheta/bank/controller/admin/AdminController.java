@@ -58,7 +58,7 @@ public class AdminController {
                 .type("SA")
                 .balance(10000.0)
                 .rateOfInterest(5.9f)
-                .branchName("SambalPur")
+                .branchName("Sambalpur")
                 .build();
         accountResponseDto1.setOpeningDate(LocalDate.now());
 

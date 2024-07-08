@@ -33,10 +33,16 @@ public class LoginController {
         UserCredential userCredential = userCredentialRepository.findByUsername(loginRequestDto.getUsername());
         if (userCredential != null) {
             session.setAttribute("loginRequestDto", loginRequestDto);
-            if (userCredential.getUserRole().equals("Admin")) {
-                return "redirect:/admins/dashboard";
-            } else if (userCredential.getUserRole().equals("Customer")) {
-                return "redirect:/customers/dashboard";
+            switch (userCredential.getUserRole()) {
+                case "Admin" -> {
+                    return "redirect:/admins/dashboard";
+                }
+                case "Customer" -> {
+                    return "redirect:/customers/dashboard";
+                }
+                case "Employee" -> {
+                    return "redirect:/employees/dashboard";
+                }
             }
         }
         return "index";
