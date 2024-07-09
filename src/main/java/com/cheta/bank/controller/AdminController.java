@@ -87,7 +87,7 @@ public class AdminController {
         LoginRequestDto loginRequestDto = (LoginRequestDto) session.getAttribute("loginRequestDto");
 
         // get all accounts in the database and add it to the model
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAllAccounts();
+        List<AccountResponseDto> accountResponseDtoList = accountService.getAll();
         model.addAttribute("accounts", accountResponseDtoList);
         // return the view name
         return "/admin/accounts-table";

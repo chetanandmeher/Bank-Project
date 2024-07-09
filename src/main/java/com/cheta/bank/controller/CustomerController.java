@@ -57,7 +57,7 @@ public class CustomerController {
         Integer userId = userCredentialRepository.findByUsername(loginRequestDto.getUsername()).getUserId();
 
         // get all accounts and add it to the model
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAllAccountsByUserId(userId);
+        List<AccountResponseDto> accountResponseDtoList = accountService.getAllByUserId(userId);
         model.addAttribute("accounts", accountResponseDtoList);
 
         return "/customer/accounts-table";

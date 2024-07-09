@@ -3,7 +3,6 @@ package com.cheta.bank.controller;
 import com.cheta.bank.dto.response.AccountResponseDto;
 import com.cheta.bank.dto.response.UserCredentialResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
-import com.cheta.bank.repository.UserRepository;
 import com.cheta.bank.service.impl.AccountService;
 import com.cheta.bank.service.impl.UserCredentialService;
 import com.cheta.bank.service.impl.UserService;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.stream.Collectors.toList;
 
 @Controller
 public class EmployeeController {
@@ -62,7 +59,7 @@ public class EmployeeController {
         UserResponseDto customer = userService.getUserByUsername(username);
         model.addAttribute("customer",customer);
         // add all th4 account related to the customer's userId
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAllAccountsByUserId(customer.getId());
+        List<AccountResponseDto> accountResponseDtoList = accountService.getAllByUserId(customer.getId());
         model.addAttribute("accounts",accountResponseDtoList);
         return "employee/customer-details";
     }
@@ -73,7 +70,13 @@ public class EmployeeController {
     public String getAllCustomerAccounts(Model model) {
         // get all the customer accounts from database and show
         model.addAttribute("accounts",accountService.getAllByUserRole("Customer"));
-
         return "/employee/accounts-table";
+    }
+
+    @GetMapping("/employees/transactions")
+    public String getCustomerTransactions(Model model) {
+        // get all the transactions from database and show
+        model.addAttribute("transactions", accountService.getAllTransactions());
+        return "/employee/transactions-table";
     }
 }
