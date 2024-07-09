@@ -267,7 +267,7 @@
 												<tbody th:each="customer : ${customers}">
 													<tr>
 														<td>
-															<a th:href="@{/customers/{username}(username=${customer.username})}"
+															<a th:href="@{/employees/customers/{username}(username=${customer.username})}"
 															   th:text="${customer.username}"></a>
 														</td>
 														<td th:text="${customer.firstName}"></td>

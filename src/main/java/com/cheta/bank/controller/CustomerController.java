@@ -1,4 +1,4 @@
-package com.cheta.bank.controller.customer;
+package com.cheta.bank.controller;
 
 
 import com.cheta.bank.dto.request.LoginRequestDto;

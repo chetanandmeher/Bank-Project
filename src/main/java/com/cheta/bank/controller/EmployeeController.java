@@ -1,14 +1,17 @@
 package com.cheta.bank.controller;
 
+import com.cheta.bank.dto.response.AccountResponseDto;
 import com.cheta.bank.dto.response.UserCredentialResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 import com.cheta.bank.repository.UserRepository;
+import com.cheta.bank.service.impl.AccountService;
 import com.cheta.bank.service.impl.UserCredentialService;
 import com.cheta.bank.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +26,8 @@ public class EmployeeController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    AccountService accountService;
 
     @GetMapping("/employees/dashboard")
     public String getEmployeeDashboard() {
@@ -50,8 +55,25 @@ public class EmployeeController {
     }
 
 
+    // get the customer details when clicked on the username in the customer table
+    @GetMapping("/employees/customers/{username}")
+    public String getCustomerDetails(Model model, @PathVariable("username") String username) {
+        // add the customer details to model
+        UserResponseDto customer = userService.getUserByUsername(username);
+        model.addAttribute("customer",customer);
+        // add all th4 account related to the customer's userId
+        List<AccountResponseDto> accountResponseDtoList = accountService.getAllAccountsByUserId(customer.getId());
+        model.addAttribute("accounts",accountResponseDtoList);
+        return "employee/customer-details";
+    }
+
+
+
     @GetMapping("/employees/accounts")
-    public String getAllCustomerAccounts() {
+    public String getAllCustomerAccounts(Model model) {
+        // get all the customer accounts from database and show
+        model.addAttribute("accounts",accountService.getAllByUserRole("Customer"));
+
         return "/employee/accounts-table";
     }
 }

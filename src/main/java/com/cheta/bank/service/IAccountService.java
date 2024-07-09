@@ -11,5 +11,8 @@ public interface IAccountService {
     // get all the account associated with a given Userid:
     public List<AccountResponseDto> getAllAccountsByUserId(Integer userId);
 
+    // get all accounts by user role
+    public List<AccountResponseDto> getAllByUserRole(String userRole);
+
 
 }

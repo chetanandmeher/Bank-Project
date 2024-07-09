@@ -1,4 +1,4 @@
-package com.cheta.bank.controller.admin;
+package com.cheta.bank.controller;
 
 import com.cheta.bank.dto.request.LoginRequestDto;
 import com.cheta.bank.dto.response.AccountResponseDto;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;

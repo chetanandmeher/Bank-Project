@@ -60,6 +60,7 @@ public class UserService implements IUserService {
 
     private UserResponseDto convertUserToUserResponseDto(User user, UserCredential userCredential) {
         return UserResponseDto.builder()
+                .id(user.getId())
                 .cin(user.getCin())
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
