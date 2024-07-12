@@ -1,19 +1,22 @@
 package com.cheta.bank.controller;
 
+import com.cheta.bank.dto.admin.AdminUserDetailsDto;
 import com.cheta.bank.dto.request.LoginRequestDto;
 import com.cheta.bank.dto.response.AccountResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 import com.cheta.bank.repository.UserCredentialRepository;
 import com.cheta.bank.service.impl.AccountService;
+import com.cheta.bank.service.impl.AdminService;
 import com.cheta.bank.service.impl.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -25,6 +28,9 @@ public class AdminController {
     UserCredentialRepository userCredentialRepository;
     @Autowired
     AccountService accountService;
+
+    @Autowired
+    AdminService adminService;
 
     // Dashboard for admin
     @GetMapping("/admins/dashboard")
@@ -45,40 +51,33 @@ public class AdminController {
         return "/admin/users-table";
     }
 
-    // User Details for admin
-    @GetMapping("/users/{username}")
-    public String userForm(Model model, @PathVariable String username) {
+    // User Details for admin page
+    @GetMapping("/admins/users/{username}")
+    public String userDetails(Model model, @PathVariable("username") String username) {
         // user details
         UserResponseDto userResponseDto = userService.getUserByUsername(username);
-
-        // All accounts
-        AccountResponseDto accountResponseDto1 = AccountResponseDto.builder()
-                .accountNumber("123456789")
-                .type("SA")
-                .balance(10000.0)
-                .rateOfInterest(5.9f)
-                .branchName("Sambalpur")
-                .build();
-        accountResponseDto1.setOpeningDate(LocalDate.now());
-
-        AccountResponseDto accountResponseDto2 = AccountResponseDto.builder()
-                .accountNumber("123456789")
-                .type("SA")
-                .balance(10000.0)
-                .rateOfInterest(5.9f)
-                .branchName("NYC")
-                .build();
-        accountResponseDto2.setOpeningDate(LocalDate.now());
-
-        List<AccountResponseDto> accountResponseDtoList = List.of(accountResponseDto1, accountResponseDto2);
-
+        AdminUserDetailsDto adminUserDetailsDto = adminService.getUserByUsername(username);
+        // get all the account related to th usedId
+        List<AccountResponseDto> accountResponseDtoList = accountService.getAllByUserId(userResponseDto.getId());
         // Add model attributes
-        model.addAttribute("user", userResponseDto);
+        model.addAttribute("user", adminUserDetailsDto);
         model.addAttribute("accounts", accountResponseDtoList);
 
         return "/admin/user-details";
-
     }
+    @PostMapping("/admins/users/{username}")
+    public String updateUserDetails(@PathVariable("username") String username,
+                                    @ModelAttribute("user") AdminUserDetailsDto adminUserDetailsDto,
+                                    Model model) {
+        // update user details
+        AdminUserDetailsDto adminUserDetailsDtoReturn = adminService.updateUserDetails(adminUserDetailsDto);
+        // Add updated user details to redirect attributes
+        model.addAttribute("user", adminUserDetailsDtoReturn);
+
+        return "/admin/user-details";
+    }
+
+
 
     // Accounts Table for admin
     @GetMapping("/admins/accounts")
@@ -91,50 +90,7 @@ public class AdminController {
         model.addAttribute("accounts", accountResponseDtoList);
         // return the view name
         return "/admin/accounts-table";
-
     }
-
-
-    @GetMapping("/rough")
-    public String rough(Model model) {
-        // user details
-        UserResponseDto userResponseDto = userService.getUserByUsername("cheta");
-
-        // All accounts
-        AccountResponseDto accountResponseDto1 = AccountResponseDto.builder()
-                .accountNumber("123456789")
-                .type("SA")
-                .balance(10000.0)
-                .rateOfInterest(5.9f)
-                .branchName("sambalpur")
-                .build();
-        accountResponseDto1.setOpeningDate(LocalDate.now());
-
-        AccountResponseDto accountResponseDto2 = AccountResponseDto.builder()
-                .accountNumber("1234")
-                .type("FD")
-                .balance(5467.0)
-                .rateOfInterest(4.5f)
-                .branchName("NYC")
-                .build();
-        accountResponseDto2.setOpeningDate(LocalDate.now());
-
-        List<AccountResponseDto> accountResponseDtoList = List.of(accountResponseDto1, accountResponseDto2);
-
-        // Account type
-        List<String> accountTypes = List.of("FD(Fixed Deposit)", "CA(Current Account)", "SA(Saving Account)");
-
-        // Branches
-        List<String> branches = List.of("Branch 1", "Branch 2", "Branch 3");
-
-        // Add model attributes
-        model.addAttribute("user", userResponseDto);
-        model.addAttribute("accounts", accountResponseDtoList);
-        model.addAttribute("accountTypes", accountTypes);
-        model.addAttribute("branches", branches);
-        return "rough";
-    }
-
 
 
 }

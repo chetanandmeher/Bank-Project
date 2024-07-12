@@ -25,6 +25,13 @@ public class TransactionService implements ITransactionService {
         return null;
     }
 
+    // Get all the transactions related to userRole
+    @Override
+    public List<TransactionResponseDto> getAllByUserRole(String userRole) {
+        // Implementation to retrieve all transactions for the given userRole
+        return List.of();
+    }
+
 
     // convert transaction sql model to transactionResponseDto model
     private TransactionResponseDto convertTransactionToTransactionResponseDto(Transaction transaction) {

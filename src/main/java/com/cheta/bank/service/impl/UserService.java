@@ -1,5 +1,6 @@
 package com.cheta.bank.service.impl;
 
+import com.cheta.bank.dto.request.UserRequestDto;
 import com.cheta.bank.dto.response.UserCredentialResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 
@@ -9,9 +10,11 @@ import com.cheta.bank.repository.AddressRepository;
 import com.cheta.bank.repository.UserCredentialRepository;
 import com.cheta.bank.repository.UserRepository;
 import com.cheta.bank.service.IUserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +58,27 @@ public class UserService implements IUserService {
     public UserResponseDto getByUserId(Integer userId) {
         Optional<User> user = userRepository.findById(userId);
         return convertUserToUserResponseDto(user.get(), userCredentialRepository.getUserCredentialByUserId(user.get().getId()));
+    }
+
+
+    // Update the user's details
+    @Override
+    @Transactional
+    public UserResponseDto updateUser(UserRequestDto userRequestDto) {
+        // save all the data from userRequestDto to the database
+        Optional<User> user = userRepository.findById(userRequestDto.getId());
+        if (user.isPresent()) {
+            // this code will save data in 'user' table
+            user.get().setFirstName(userRequestDto.getFirstName() != null && !user.get().getFirstName().equals(userRequestDto.getFirstName()) ? userRequestDto.getFirstName() : user.get().getFirstName());
+            user.get().setUpdatedAt(LocalDateTime.now());
+            user.get().setUpdatedBy(2);
+            userRepository.save(user.get());
+            return convertUserToUserResponseDto(userRepository.findById(userRequestDto.getId()).get(),
+                                                userCredentialRepository.findByUserId(userRequestDto.getId()));
+        } else {
+            System.out.println("User with Id: " + userRequestDto.getId() + " not found");
+            return null;
+        }
     }
 
 

@@ -76,7 +76,7 @@ public class EmployeeController {
     @GetMapping("/employees/transactions")
     public String getCustomerTransactions(Model model) {
         // get all the transactions from database and show
-        model.addAttribute("transactions", accountService.getAllTransactions());
+//        model.addAttribute("transactions", accountService.getAllTransactions());
         return "/employee/transactions-table";
     }
 }

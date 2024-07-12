@@ -219,7 +219,7 @@
 										<img src="/images/user.png" alt="Admin Templates">
 										<span class="status online"></span>
 									</span>
-					</a>1
+					</a>
 					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="userSettings">
 						<div class="header-profile-actions">
 							<a href="profile.html">Profile</a>
@@ -256,83 +256,98 @@
 
 							<!-- Row start -->
 							<div class="row">
-								<div class="row">
+
 									<!-- User Details start-->
-									<div class="col-12 d-flex justify-content-between align-items-center">
-										<div class="form-section-title flex-grow-1">User Details</div>
-										<button type="submit" class="btn btn-primary btn-lg">Save</button>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputUsername" class="form-label">Username</label>
-											<input type="text" class="form-control" id="inputUsername" placeholder="Enter Username" th:value="${user.username}">
+								<form th:action="@{/admins/users/{username}(username=${user.username})}" method="post" th:object="${user}">
+									<div class="row">
+										<div class="col-12 d-flex justify-content-between align-items-center">
+											<div class="form-section-title flex-grow-1">User Details</div>
+											<button type="submit" class="btn btn-primary btn-lg">Save</button>
 										</div>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputFirstName" class="form-label">First Name</label>
-											<input type="text" class="form-control" id="inputFirstName" placeholder="Enter First Name" th:value="${user.firstName}">
+										<div>
+											<input type="hidden" th:field="*{id}">
 										</div>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputMiddleName" class="form-label">Middle Name</label>
-											<input type="text" class="form-control" id="inputMiddleName" placeholder="Enter Middle Name" th:value="${user.middleName}">
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputUsername" class="form-label">Username</label>
+												<input type="text" class="form-control" id="inputUsername" placeholder="Enter Username"
+													   th:field="*{username}">
+											</div>
 										</div>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputLastName" class="form-label">Last Name</label>
-											<input type="text" class="form-control" id="inputLastName" placeholder="Enter Last Name" th:value="${user.lastName}">
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputFirstName" class="form-label">First Name</label>
+												<input type="text" class="form-control" id="inputFirstName" placeholder="Enter First Name"
+													   th:field="*{firstName}">
+											</div>
 										</div>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputEmail" class="form-label">Email</label>
-											<input type="email" class="form-control" id="inputEmail" placeholder="Enter Email" th:value="${user.email}">
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputMiddleName" class="form-label">Middle Name</label>
+												<input type="text" class="form-control" id="inputMiddleName" placeholder="Enter Middle Name"
+													   th:field="*{middleName}">
+											</div>
 										</div>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputPhone" class="form-label">Mobile</label>
-											<input type="number" class="form-control" id="inputPhone" placeholder="Enter Phone Number" th:value="${user.mobileNumber}">
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputLastName" class="form-label">Last Name</label>
+												<input type="text" class="form-control" id="inputLastName" placeholder="Enter Last Name"
+													   th:field="*{lastName}">
+											</div>
 										</div>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputDateOfBirth" class="form-label">Date of Birth</label>
-											<input type="date" class="form-control" id="inputDateOfBirth" placeholder="Enter Date of Birth" th:value="${user.dateOfBirth}">
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputEmail" class="form-label">Email</label>
+												<input type="email" class="form-control" id="inputEmail" placeholder="Enter Email"
+													   th:field="*{email}">
+											</div>
 										</div>
-									</div>
-									<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-										<div class="mb-3">
-											<label for="inputAadhaarNumber" class="form-label">Aadhaar Number</label>
-											<input type="text" class="form-control" id="inputAadhaarNumber" placeholder="Enter Aadhaar Number" th:value="${user.aadhaarNumber}">
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputPhone" class="form-label">Mobile</label>
+												<input type="number" class="form-control" id="inputPhone" placeholder="Enter Phone Number"
+													   th:field="*{mobileNumber}">
+											</div>
 										</div>
-									</div>
-									<div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
-										<div class="mb-3">
-											<label class="form-label">Gender</label>
-											<div class="mt-2">
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="checkbox" id="genderCheckbox1" value="M" th:checked="${user.gender == 'M'}">
-													<label class="form-check-label" for="genderCheckbox1">Male</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="checkbox" id="genderCheckbox2" value="F" th:checked="${user.gender == 'F'}">
-													<label class="form-check-label" for="genderCheckbox2">Female</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="checkbox" id="genderCheckbox3" value="O" th:checked="${user.gender == 'O'}">
-													<label class="form-check-label" for="genderCheckbox3">Other</label>
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputDateOfBirth" class="form-label">Date of Birth</label>
+												<input type="date" class="form-control" id="inputDateOfBirth" placeholder="Enter Date of Birth"
+													   th:field="*{dateOfBirth}">
+											</div>
+										</div>
+										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+											<div class="mb-3">
+												<label for="inputAadhaarNumber" class="form-label">Aadhaar Number</label>
+												<input type="text" class="form-control" id="inputAadhaarNumber" placeholder="Enter Aadhaar Number"
+													   th:field="*{aadhaarNumber}">
+											</div>
+										</div>
+										<div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
+											<div class="mb-3">
+												<label class="form-label">Gender</label>
+												<div class="mt-2">
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" type="checkbox" id="genderCheckbox1"
+															   value="M" th:checked="${user.gender == 'M'}" th:field="*{gender}">
+														<label class="form-check-label" for="genderCheckbox1">Male</label>
+													</div>
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" type="checkbox" id="genderCheckbox2"
+															   value="F" th:checked="${user.gender == 'F'}"  th:field="*{gender}">
+														<label class="form-check-label" for="genderCheckbox2">Female</label>
+													</div>
+													<div class="form-check form-check-inline">
+														<input class="form-check-input" type="checkbox" id="genderCheckbox3"
+															   value="O" th:checked="${user.gender == 'O'}" th:field="*{gender}">
+														<label class="form-check-label" for="genderCheckbox3">Other</label>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+								</form>  <!-- User Details end-->
 
-									<!-- User Details end-->
-								</div>
-								>
 
 								<!-- Address start-->
 								<div class="col-12 d-flex justify-content-between align-items-center">
@@ -439,38 +454,38 @@
 
 
 
-							<!-- Form actions footer start -->
-							<div class="form-actions-footer">
-								<button class="btn btn-light">Cancel</button>
-								<button class="btn btn-success">Submit</button>
-							</div>
-							<!-- Form actions footer end -->
+								<!-- Form actions footer start -->
+								<div class="form-actions-footer">
+									<button class="btn btn-light">Cancel</button>
+									<button class="btn btn-success">Submit</button>
+								</div>
+								<!-- Form actions footer end -->
 
+							</div>
 						</div>
+						<!-- Card end -->
+
 					</div>
-					<!-- Card end -->
 
 				</div>
+				<!-- Row end -->
 
 			</div>
-			<!-- Row end -->
+			<!-- Content wrapper end -->
+
+			<!-- App Footer start -->
+			<div class="app-footer">
+				<span>© Arise admin 2023</span>
+			</div>
+			<!-- App footer end -->
 
 		</div>
-		<!-- Content wrapper end -->
-
-		<!-- App Footer start -->
-		<div class="app-footer">
-			<span>© Arise admin 2023</span>
-		</div>
-		<!-- App footer end -->
+		<!-- Content wrapper scroll end -->
 
 	</div>
-	<!-- Content wrapper scroll end -->
-
-</div>
-<!-- *************
-    ************ Main container end *************
-************* -->
+	<!-- *************
+        ************ Main container end *************
+    ************* -->
 
 </div>
 <!-- Page wrapper end -->
