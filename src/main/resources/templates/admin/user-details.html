@@ -271,78 +271,87 @@
 											<div class="mb-3">
 												<label for="inputUsername" class="form-label">Username</label>
 												<input type="text" class="form-control" id="inputUsername" placeholder="Enter Username"
-													   th:field="*{username}">
+													   th:field="*{username}" readonly>
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-											<div class="mb-3">
+											<div class="was-validated">
 												<label for="inputFirstName" class="form-label">First Name</label>
 												<input type="text" class="form-control" id="inputFirstName" placeholder="Enter First Name"
-													   th:field="*{firstName}">
+													   th:field="*{firstName}" required minlength="2" maxlength="45">
+												<div class="invalid-feedback">Please enter a valid first name (2-45 characters).</div>
+
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
 											<div class="mb-3">
 												<label for="inputMiddleName" class="form-label">Middle Name</label>
 												<input type="text" class="form-control" id="inputMiddleName" placeholder="Enter Middle Name"
-													   th:field="*{middleName}">
+													   th:field="*{middleName}" maxlength="45">
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
 											<div class="mb-3">
 												<label for="inputLastName" class="form-label">Last Name</label>
 												<input type="text" class="form-control" id="inputLastName" placeholder="Enter Last Name"
-													   th:field="*{lastName}">
+													   th:field="*{lastName}" maxlength="45">
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-											<div class="mb-3">
+											<div class="was-validated">
 												<label for="inputEmail" class="form-label">Email</label>
 												<input type="email" class="form-control" id="inputEmail" placeholder="Enter Email"
-													   th:field="*{email}">
+													   th:field="*{email}" required pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="45">
+												<div class="invalid-feedback">Please provide valid email.</div>
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-											<div class="mb-3">
+											<div class="was-validated">
 												<label for="inputPhone" class="form-label">Mobile</label>
 												<input type="number" class="form-control" id="inputPhone" placeholder="Enter Phone Number"
-													   th:field="*{mobileNumber}">
+													   th:field="*{mobileNumber}" maxlenght="10">
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-											<div class="mb-3">
+											<div class="was-validated">
 												<label for="inputDateOfBirth" class="form-label">Date of Birth</label>
 												<input type="date" class="form-control" id="inputDateOfBirth" placeholder="Enter Date of Birth"
-													   th:field="*{dateOfBirth}">
+													   th:field="*{dateOfBirth}" required>
+												<div class="invalid-feedback">Please provide a valid date</div>
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-											<div class="mb-3">
+											<div class="was-validated">
 												<label for="inputAadhaarNumber" class="form-label">Aadhaar Number</label>
 												<input type="text" class="form-control" id="inputAadhaarNumber" placeholder="Enter Aadhaar Number"
-													   th:field="*{aadhaarNumber}">
+													   th:field="*{aadhaarNumber}" required pattern="[0-9]{12}" maxLength="12">
+												<div class="invalid-feedback">Please provide a valid Aadhaar Number.</div>
 											</div>
 										</div>
 										<div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
-											<div class="mb-3">
+											<div class="was-validated">
 												<label class="form-label">Gender</label>
 												<div class="mt-2">
 													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="checkbox" id="genderCheckbox1"
-															   value="M" th:checked="${user.gender == 'M'}" th:field="*{gender}">
+														<input class="form-check-input" type="radio" id="genderCheckbox1"
+															   value="M" th:checked="${user.gender == 'M'}" th:field="*{gender}"
+															   name="gender" required>
 														<label class="form-check-label" for="genderCheckbox1">Male</label>
 													</div>
 													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="checkbox" id="genderCheckbox2"
-															   value="F" th:checked="${user.gender == 'F'}"  th:field="*{gender}">
+														<input class="form-check-input" type="radio" id="genderCheckbox2"
+															   value="F" th:checked="${user.gender == 'F'}"  th:field="*{gender}"
+															   name="gender" required>
 														<label class="form-check-label" for="genderCheckbox2">Female</label>
 													</div>
 													<div class="form-check form-check-inline">
-														<input class="form-check-input" type="checkbox" id="genderCheckbox3"
-															   value="O" th:checked="${user.gender == 'O'}" th:field="*{gender}">
+														<input class="form-check-input" type="radio" id="genderCheckbox3"
+															   value="O" th:checked="${user.gender == 'O'}" th:field="*{gender}"
+															   name="gender" required>
 														<label class="form-check-label" for="genderCheckbox3">Other</label>
 													</div>
 												</div>
+												<div class="invalid-feedback">Please select at least one gender.</div>
 											</div>
 										</div>
 									</div>

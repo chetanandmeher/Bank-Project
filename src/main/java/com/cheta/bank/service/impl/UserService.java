@@ -1,7 +1,6 @@
 package com.cheta.bank.service.impl;
 
 import com.cheta.bank.dto.request.UserRequestDto;
-import com.cheta.bank.dto.response.UserCredentialResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 
 import com.cheta.bank.mysql.model.User;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements IUserService<UserResponseDto, UserRequestDto> {
 
     // Inject the userRepository dependency
     @Autowired

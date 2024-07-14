@@ -2,7 +2,7 @@ package com.cheta.bank.controller;
 
 
 import com.cheta.bank.dto.request.LoginRequestDto;
-import com.cheta.bank.dto.response.AccountResponseDto;
+import com.cheta.bank.dto.AccountDto;
 import com.cheta.bank.dto.response.TransactionResponseDto;
 import com.cheta.bank.repository.UserCredentialRepository;
 import com.cheta.bank.service.impl.AccountService;
@@ -57,8 +57,8 @@ public class CustomerController {
         Integer userId = userCredentialRepository.findByUsername(loginRequestDto.getUsername()).getUserId();
 
         // get all accounts and add it to the model
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAllByUserId(userId);
-        model.addAttribute("accounts", accountResponseDtoList);
+        List<AccountDto> accountDtoList = accountService.getAllByUserId(userId);
+        model.addAttribute("accounts", accountDtoList);
 
         return "/customer/accounts-table";
     }

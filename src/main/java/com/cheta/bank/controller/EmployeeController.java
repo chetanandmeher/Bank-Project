@@ -1,6 +1,6 @@
 package com.cheta.bank.controller;
 
-import com.cheta.bank.dto.response.AccountResponseDto;
+import com.cheta.bank.dto.AccountDto;
 import com.cheta.bank.dto.response.UserCredentialResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 import com.cheta.bank.service.impl.AccountService;
@@ -59,8 +59,8 @@ public class EmployeeController {
         UserResponseDto customer = userService.getUserByUsername(username);
         model.addAttribute("customer",customer);
         // add all th4 account related to the customer's userId
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAllByUserId(customer.getId());
-        model.addAttribute("accounts",accountResponseDtoList);
+        List<AccountDto> accountDtoList = accountService.getAllByUserId(customer.getId());
+        model.addAttribute("accounts", accountDtoList);
         return "employee/customer-details";
     }
 

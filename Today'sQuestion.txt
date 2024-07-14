@@ -1,8 +1,12 @@
+0. Ask about the Dto name.
+
 1. Ask about the getUserByUserName function in the AdminService layer
-    1. Function to generate AdminUserDetailsDto from thr mysql users and userCredentials models
+    1. Function to generate AdminUserDetailsDto from the mysql users and userCredentials models
         1. name?
         2. how may parameter of the function
 
 2. Where to show CIN??
 
-3.When Rest Api are used?
+3. When Rest Api are used?
+
+4. How to resolve the specific method implementation in the AdminService layer of the IUserService Interface.

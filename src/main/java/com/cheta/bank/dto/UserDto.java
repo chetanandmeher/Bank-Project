@@ -1,4 +1,4 @@
-package com.cheta.bank.dto.admin;
+package com.cheta.bank.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AdminUserDetailsDto {
+public class UserDto {
     private Integer id;
     private String username;
     private String firstName;

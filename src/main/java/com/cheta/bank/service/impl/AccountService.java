@@ -1,6 +1,6 @@
 package com.cheta.bank.service.impl;
 
-import com.cheta.bank.dto.response.AccountResponseDto;
+import com.cheta.bank.dto.AccountDto;
 import com.cheta.bank.mysql.model.Account;
 import com.cheta.bank.mysql.model.UserCredential;
 import com.cheta.bank.repository.AccountRepository;
@@ -31,14 +31,14 @@ public class AccountService implements IAccountService {
     UserCredentialService userCredentialService;
 
     // get the account by userId
-    public AccountResponseDto getAccountByUserId(Integer userId) {
+    public AccountDto getAccountByUserId(Integer userId) {
         Optional<Account> account = accountRepository.findById(userId);
         // convert account mysql model to accountResponseDto
         return convertAccountToAccountResponseDto(account.get());
     }
 
     @Override
-    public List<AccountResponseDto> getAll() {
+    public List<AccountDto> getAll() {
         List<Account> accountList = (List<Account>) accountRepository.findAll();
         if (!accountList.isEmpty()) {
             return accountList.stream().map(this::convertAccountToAccountResponseDto).toList();
@@ -48,7 +48,7 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public List<AccountResponseDto> getAllByUserId(Integer userId) {
+    public List<AccountDto> getAllByUserId(Integer userId) {
         List<Account> accountList = accountRepository.findAllByUserId(userId);
         if (!accountList.isEmpty()) {
             return accountList.stream().map(this::convertAccountToAccountResponseDto).toList();
@@ -58,14 +58,14 @@ public class AccountService implements IAccountService {
 
     // Get all accounts with a given user role
     @Override
-    public List<AccountResponseDto> getAllByUserRole(String userRole) {
+    public List<AccountDto> getAllByUserRole(String userRole) {
         // Get all userCredential related to the userRole
         List<UserCredential> userCredentials = userCredentialRepository.findAllByUserRole(userRole);
         // Get all the userID of each userCredential
         List<Integer> customerUserIdList = userCredentials.stream()
                 .map(UserCredential::getUserId)
                 .toList();
-        List<AccountResponseDto> accountsResponseDtoList = new ArrayList<>();
+        List<AccountDto> accountsResponseDtoList = new ArrayList<>();
         customerUserIdList.forEach(userId-> {
             // Get all the accounts related to the userId
             List<Account> accountList = accountRepository.findAllByUserId(userId);
@@ -76,8 +76,8 @@ public class AccountService implements IAccountService {
         return accountsResponseDtoList ;
     }
 
-    private AccountResponseDto convertAccountToAccountResponseDto(Account account) {
-            return AccountResponseDto.builder()
+    private AccountDto convertAccountToAccountResponseDto(Account account) {
+            return AccountDto.builder()
                 .accountNumber(account.getAccountNumber())
                 .type(account.getAccountType())
                 .balance(account.getBalance())

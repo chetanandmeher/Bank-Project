@@ -1,4 +1,4 @@
-package com.cheta.bank.dto.response;
+package com.cheta.bank.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AccountResponseDto {
+public class AccountDto {
     private String accountNumber;
     private String customerUsername;
     private String type;

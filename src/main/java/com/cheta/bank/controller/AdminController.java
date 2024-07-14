@@ -1,8 +1,8 @@
 package com.cheta.bank.controller;
 
-import com.cheta.bank.dto.admin.AdminUserDetailsDto;
+import com.cheta.bank.dto.UserDto;
 import com.cheta.bank.dto.request.LoginRequestDto;
-import com.cheta.bank.dto.response.AccountResponseDto;
+import com.cheta.bank.dto.AccountDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 import com.cheta.bank.repository.UserCredentialRepository;
 import com.cheta.bank.service.impl.AccountService;
@@ -56,23 +56,23 @@ public class AdminController {
     public String userDetails(Model model, @PathVariable("username") String username) {
         // user details
         UserResponseDto userResponseDto = userService.getUserByUsername(username);
-        AdminUserDetailsDto adminUserDetailsDto = adminService.getUserByUsername(username);
+        UserDto userDto = adminService.getUserByUsername(username);
         // get all the account related to th usedId
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAllByUserId(userResponseDto.getId());
+        List<AccountDto> accountDtoList = accountService.getAllByUserId(userResponseDto.getId());
         // Add model attributes
-        model.addAttribute("user", adminUserDetailsDto);
-        model.addAttribute("accounts", accountResponseDtoList);
+        model.addAttribute("user", userDto);
+        model.addAttribute("accounts", accountDtoList);
 
         return "/admin/user-details";
     }
     @PostMapping("/admins/users/{username}")
     public String updateUserDetails(@PathVariable("username") String username,
-                                    @ModelAttribute("user") AdminUserDetailsDto adminUserDetailsDto,
+                                    @ModelAttribute("user") UserDto userDto,
                                     Model model) {
         // update user details
-        AdminUserDetailsDto adminUserDetailsDtoReturn = adminService.updateUserDetails(adminUserDetailsDto);
+        UserDto userDtoReturn = adminService.updateUser(userDto);
         // Add updated user details to redirect attributes
-        model.addAttribute("user", adminUserDetailsDtoReturn);
+        model.addAttribute("user", userDtoReturn);
 
         return "/admin/user-details";
     }
@@ -86,8 +86,8 @@ public class AdminController {
         LoginRequestDto loginRequestDto = (LoginRequestDto) session.getAttribute("loginRequestDto");
 
         // get all accounts in the database and add it to the model
-        List<AccountResponseDto> accountResponseDtoList = accountService.getAll();
-        model.addAttribute("accounts", accountResponseDtoList);
+        List<AccountDto> accountDtoList = accountService.getAll();
+        model.addAttribute("accounts", accountDtoList);
         // return the view name
         return "/admin/accounts-table";
     }

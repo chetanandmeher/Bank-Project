@@ -1,18 +1,18 @@
 package com.cheta.bank.service;
 
-import com.cheta.bank.dto.response.AccountResponseDto;
+import com.cheta.bank.dto.AccountDto;
 
 import java.util.List;
 
 public interface IAccountService {
-    public AccountResponseDto getAccountByUserId(Integer userId);
-    public List<AccountResponseDto> getAll();
+    public AccountDto getAccountByUserId(Integer userId);
+    public List<AccountDto> getAll();
 
     // get all the account associated with a given Userid:
-    public List<AccountResponseDto> getAllByUserId(Integer userId);
+    public List<AccountDto> getAllByUserId(Integer userId);
 
     // get all accounts by user role
-    public List<AccountResponseDto> getAllByUserRole(String userRole);
+    public List<AccountDto> getAllByUserRole(String userRole);
 
 
 }
