@@ -70,8 +70,8 @@ public class AdminController {
                                     @ModelAttribute("user") UserDto userDto,
                                     Model model) {
         // update user details
-        UserDto userDtoReturn = adminService.updateUser(userDto);
-        // Add updated user details to redirect attributes
+        UserDto userDtoReturn = adminService.updateUserDetails(userDto);
+        // Add updated user details to model Attribute
         model.addAttribute("user", userDtoReturn);
 
         return "/admin/user-details";

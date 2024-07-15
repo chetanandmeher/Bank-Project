@@ -63,7 +63,7 @@ public class UserService implements IUserService<UserResponseDto, UserRequestDto
     // Update the user's details
     @Override
     @Transactional
-    public UserResponseDto updateUser(UserRequestDto userRequestDto) {
+    public UserResponseDto updateUserDetails(UserRequestDto userRequestDto) {
         // save all the data from userRequestDto to the database
         Optional<User> user = userRepository.findById(userRequestDto.getId());
         if (user.isPresent()) {

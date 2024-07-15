@@ -34,11 +34,18 @@ public class AdminService implements IUserService<UserDto, UserDto>{
 
 
     @Override
-    public UserDto updateUser(UserDto userDto) {
+    public UserDto updateUserDetails(UserDto userDto) {
         // get the user from database with the given user id
         Optional<User> user = userRepository.findById(userDto.getId());
         if (user.isPresent()) {
             user.get().setFirstName(userDto.getFirstName() != null && !user.get().getFirstName().equals(userDto.getFirstName()) ? userDto.getFirstName().trim() : user.get().getFirstName());
+            user.get().setMiddleName(userDto.getMiddleName() != null && (user.get().getMiddleName() == null ||!user.get().getMiddleName().equals(userDto.getMiddleName())) ? userDto.getMiddleName().trim() : user.get().getMiddleName());
+            user.get().setLastName(userDto.getLastName() != null && !user.get().getLastName().equals(userDto.getLastName()) ? userDto.getLastName().trim() : user.get().getLastName());
+            user.get().setMobileNumber(userDto.getMobileNumber() != null && !user.get().getMobileNumber().equals(userDto.getMobileNumber()) ? userDto.getMobileNumber().trim() : user.get().getMobileNumber());
+            user.get().setEmail(userDto.getEmail() != null &&!user.get().getEmail().equals(userDto.getEmail())? userDto.getEmail().trim() : user.get().getEmail());
+            user.get().setGender(userDto.getGender() != null && !user.get().getGender().equals(userDto.getGender())? userDto.getGender() : user.get().getGender());
+            user.get().setDateOfBirth(userDto.getDateOfBirth() != null &&!user.get().getDateOfBirth().equals(userDto.getDateOfBirth())? userDto.getDateOfBirth() : user.get().getDateOfBirth());
+            user.get().setAadhaarNumber(userDto.getAadhaarNumber() != null &&!user.get().getAadhaarNumber().equals(userDto.getAadhaarNumber())? userDto.getAadhaarNumber().trim() : user.get().getAadhaarNumber());
             user.get().setUpdatedAt(LocalDateTime.now());
             user.get().setUpdatedBy(2);
             userRepository.save(user.get());

@@ -12,7 +12,7 @@ public interface IUserService<T,K> {
 
     public UserResponseDto getByUserId(Integer userId);
 
-    public T updateUser(K userDto);
+    public T updateUserDetails(K userDto);
 
 
 

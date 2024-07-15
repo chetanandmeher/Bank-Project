@@ -129,13 +129,12 @@
 					</li>
 				</ul>
 			</div>
-			</li>
-			</ul>
 		</div>
+	</nav>
 </div>
 <!-- Sidebar menu ends -->
 
-</nav>
+
 <!-- Sidebar wrapper end -->
 
 <!-- *************
@@ -159,7 +158,7 @@
 		</ol>
 		<!-- Breadcrumb end -->
 
-		<!-- Header actions ccontainer start -->
+		<!-- Header actions container start -->
 		<div class="header-actions-container">
 
 			<!-- Search container start -->
@@ -280,7 +279,6 @@
 												<input type="text" class="form-control" id="inputFirstName" placeholder="Enter First Name"
 													   th:field="*{firstName}" required minlength="2" maxlength="45">
 												<div class="invalid-feedback">Please enter a valid first name (2-45 characters).</div>
-
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
@@ -302,21 +300,21 @@
 												<label for="inputEmail" class="form-label">Email</label>
 												<input type="email" class="form-control" id="inputEmail" placeholder="Enter Email"
 													   th:field="*{email}" required pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="45">
-												<div class="invalid-feedback">Please provide valid email.</div>
+												<div class="invalid-feedback">Please provide valid gmail.</div>
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
 											<div class="was-validated">
 												<label for="inputPhone" class="form-label">Mobile</label>
 												<input type="number" class="form-control" id="inputPhone" placeholder="Enter Phone Number"
-													   th:field="*{mobileNumber}" maxlenght="10">
+													   th:field="*{mobileNumber}" maxlength="10">
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
 											<div class="was-validated">
 												<label for="inputDateOfBirth" class="form-label">Date of Birth</label>
 												<input type="date" class="form-control" id="inputDateOfBirth" placeholder="Enter Date of Birth"
-													   th:field="*{dateOfBirth}" required>
+													   th:field="*{dateOfBirth}" >
 												<div class="invalid-feedback">Please provide a valid date</div>
 											</div>
 										</div>
@@ -417,7 +415,7 @@
 												<div class="mb-3">
 													<label for="inputAccountNumber1" class="form-label">Account Number</label>
 													<input type="number" class="form-control" id="inputAccountNumber1"
-														   placeholder="Enter Account No." th:value="${account.accountNumber}">
+														   placeholder="Enter Account No." th:value="${account.accountNumber}" readonly>
 												</div>
 											</div>
 											<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
@@ -425,7 +423,8 @@
 													<label for="inputAccountType1" class="form-label">Account Type</label>
 													<select class="form-select account-type-select" id="inputAccountType1">
 														<option selected disabled>Choose...</option>
-														<option th:each="type : ${accountTypes}" th:value="${type}" th:text="${type}" th:selected="${type == account.type}"></option>
+														<option th:each="type : ${accountTypes}" th:value="${type}" th:text="${type}"
+																th:selected="${type == account.type}"></option>
 													</select>
 												</div>
 											</div>
@@ -466,7 +465,7 @@
 								<!-- Form actions footer start -->
 								<div class="form-actions-footer">
 									<button class="btn btn-light">Cancel</button>
-									<button class="btn btn-success">Submit</button>
+									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
 								<!-- Form actions footer end -->
 
