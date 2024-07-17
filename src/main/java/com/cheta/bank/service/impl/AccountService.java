@@ -78,13 +78,15 @@ public class AccountService implements IAccountService {
 
     private AccountDto convertAccountToAccountResponseDto(Account account) {
             return AccountDto.builder()
+                .id(account.getId())
                 .accountNumber(account.getAccountNumber())
                 .type(account.getAccountType())
                 .balance(account.getBalance())
                 .rateOfInterest(account.getRateOfInterest())
-                .branchName(branchRepository.findById(account.getBranchId()).get().getName())
+                .branch(branchRepository.findById(account.getBranchId()).get().getName())
                 .customerUsername(userCredentialRepository.findByUserId(account.getUserId()).getUsername())
                 .openingDate(account.getOpeningDate())
+                .userId(account.getUserId())
                 .build();
     }
 }

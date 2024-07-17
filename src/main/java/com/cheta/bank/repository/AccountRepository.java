@@ -8,4 +8,5 @@ import java.util.List;
 public interface AccountRepository extends CrudRepository<Account,Integer> {
     // Get all the user associated with th given userID
     public List<Account> findAllByUserId(Integer userId);
+    public  Account findByUserId(Integer userId);
 }

@@ -255,9 +255,8 @@
 
 							<!-- Row start -->
 							<div class="row">
-
 									<!-- User Details start-->
-								<form th:action="@{/admins/users/{username}(username=${user.username})}" method="post" th:object="${user}">
+								<form th:action="@{/admins/users/${user.username}/submit-user-details" method="post" th:object="${user}">
 									<div class="row">
 										<div class="col-12 d-flex justify-content-between align-items-center">
 											<div class="form-section-title flex-grow-1">User Details</div>
@@ -270,7 +269,7 @@
 											<div class="mb-3">
 												<label for="inputUsername" class="form-label">Username</label>
 												<input type="text" class="form-control" id="inputUsername" placeholder="Enter Username"
-													   th:field="*{username}" readonly>
+													   th:field="*{username}" >
 											</div>
 										</div>
 										<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
@@ -403,57 +402,73 @@
 								<!-- Address end-->
 
 								<!-- Accounts start-->
-								<div class="container" th:each="account : ${accounts}">
-									<div id="account-container">
-										<!-- Initial account section -->
-										<div class="row account-row">
-											<div class="col-12 d-flex justify-content-between align-items-center">
-												<div class="form-section-title flex-grow-1">Account</div>
-												<button type="submit" class="btn btn-primary btn-lg">Save</button>
-											</div>
-											<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-												<div class="mb-3">
-													<label for="inputAccountNumber1" class="form-label">Account Number</label>
-													<input type="number" class="form-control" id="inputAccountNumber1"
-														   placeholder="Enter Account No." th:value="${account.accountNumber}" readonly>
+								<form th:action="@{/admins/users/{username}(username=${user.username})}" method="post" th:object="${accountList}">
+									<div class="container" th:each="account, itemStat : *{accounts}">
+										<!-- The hidden parameters of account -->
+										<input type="hidden" th:field="*{accounts[__${itemStat.index}__].id}" />
+										<input type="hidden" th:field="*{accounts[__${itemStat.index}__].customerUsername}" />
+										<input type="hidden" th:field="*{accounts[__${itemStat.index}__].userId}" />
+										<div id="account-container">
+											<!-- Initial account section -->
+											<div class="row account-row">
+												<div class="col-12 d-flex justify-content-between align-items-center">
+													<div class="form-section-title flex-grow-1">Account</div>
+													<button type="submit" class="btn btn-primary btn-lg">Save</button>
 												</div>
-											</div>
-											<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-												<div class="mb-3">
-													<label for="inputAccountType1" class="form-label">Account Type</label>
-													<select class="form-select account-type-select" id="inputAccountType1">
-														<option selected disabled>Choose...</option>
-														<option th:each="type : ${accountTypes}" th:value="${type}" th:text="${type}"
-																th:selected="${type == account.type}"></option>
-													</select>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+													<div class="mb-3">
+														<label for="inputAccountNumber1" class="form-label">Account Number</label>
+														<input type="number" class="form-control" id="inputAccountNumber1"
+															   placeholder="Enter Account No." th:field="*{accounts[__${itemStat.index}__].accountNumber}" readonly>
+													</div>
 												</div>
-											</div>
-											<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-												<div class="mb-3">
-													<label for="inputBranch1" class="form-label">Branch</label>
-													<select class="form-select branch-select" id="inputBranch1">
-														<option selected disabled>Choose...</option>
-														<!-- i have to change the selected filed to branches and change the accountResponseDto-->
-														<option th:each="branch : ${branches}" th:value="${branch}" th:text="${branch}"
-																th:selected="${branch == account.branchId}"></option>
-													</select>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+													<div class="mb-3">
+														<label for="inputAccountType1" class="form-label">Account Type</label>
+														<select class="form-select account-type-select" id="inputAccountType1">
+															<option selected disabled>Choose...</option>
+															<option th:each="type : ${accountTypes}" th:value="${type}" th:text="${type}"
+																	th:selected="${type == account.type}" th:field="*{accounts[__${itemStat.index}__].type}"></option>
+														</select>
+													</div>
 												</div>
-											</div>
-											<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-												<div class="mb-3">
-													<label for="inputROI1" class="form-label">ROI</label>
-													<input type="number" class="form-control" id="inputROI1" placeholder="Enter ROI" value="13.08" step="0.01">
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+													<div class="mb-3">
+														<label for="inputBranch1" class="form-label">Branch</label>
+														<select class="form-select branch-select" id="inputBranch1">
+															<option selected disabled>Choose...</option>
+															<!-- i have to change the selected filed to branches and change the accountResponseDto-->
+															<option th:each="branch : ${branches}" th:value="${branch}" th:text="${branch}"
+																	th:selected="${branch == account.branch}" th:field="*{accounts[__${itemStat.index}__].branch}"></option>
+														</select>
+													</div>
 												</div>
-											</div>
-											<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
-												<div class="mb-3">
-													<label for="inputBalance1" class="form-label">Balance</label>
-													<input type="number" class="form-control" id="inputBalance1" placeholder="Enter Balance" step="0.01" max="9999999999999.99" value="100000.00">
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+													<div class="mb-3">
+														<label for="inputROI1" class="form-label">ROI</label>
+														<input type="number" class="form-control" id="inputROI1" placeholder="Enter ROI"
+															   value="${account.rateOfInterest}" step="0.01" th:field="*{accounts[__${itemStat.index}__].rateOfInterest}"/>
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+													<div class="mb-3">
+														<label for="inputBalance1" class="form-label">Balance</label>
+														<input type="number" class="form-control" id="inputBalance1" placeholder="Enter Balance"
+															   step="0.01" max="9999999999999.99" value="100000.00" th:field="*{accounts[__${itemStat.index}__].balance}">
+													</div>
+												</div>
+												<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12">
+													<div class="mb-3">
+														<label for="inputOpeningDate1" class="form-label">Opening date</label>
+														<input type="date" class="form-control" id="inputOpeningDate1" placeholder="Enter Opening date"
+															   th:field="*{accounts[__${itemStat.index}__].openingDate}" readonly>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								</form>
+
 								<!-- Button to add more accounts -->
 								<div class="text-center mt-3">
 									<button id="add-account-btn" class="btn btn-primary" onclick="addAccount()">Add Account</button>

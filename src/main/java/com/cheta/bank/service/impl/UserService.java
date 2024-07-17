@@ -1,5 +1,7 @@
 package com.cheta.bank.service.impl;
 
+import com.cheta.bank.dto.AccountDto;
+import com.cheta.bank.dto.ListAccountDto;
 import com.cheta.bank.dto.request.UserRequestDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 
@@ -78,6 +80,16 @@ public class UserService implements IUserService<UserResponseDto, UserRequestDto
             System.out.println("User with Id: " + userRequestDto.getId() + " not found");
             return null;
         }
+    }
+
+    @Override
+    public ListAccountDto updateUserAccounts(ListAccountDto listAccountDto) {
+        return null;
+    }
+
+    @Override
+    public List<AccountDto> getAllAccountsByUserId(Integer userId) {
+        return List.of();
     }
 
 

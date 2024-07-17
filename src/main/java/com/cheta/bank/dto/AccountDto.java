@@ -12,12 +12,13 @@ import java.time.LocalDate;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountDto {
+    private Integer id;
     private String accountNumber;
     private String customerUsername;
     private String type;
     private Double balance;
     private Float rateOfInterest;
-    private String branchName;
+    private String branch;
     private LocalDate openingDate;
     private Integer userId;
 }
