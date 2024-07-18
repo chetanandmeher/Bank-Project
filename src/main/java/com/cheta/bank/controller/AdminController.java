@@ -70,24 +70,29 @@ public class AdminController {
         model.addAttribute("branches",getAllBranches());
         return "/admin/user-details";
     }
-    @RequestMapping(value = "/admins/users/{username}/submit-user-details", method = RequestMethod.POST)
-    public String updateUserDetails(@PathVariable("username") String username,
-                                    @ModelAttribute("user") UserDto userDto,
-                                    @ModelAttribute("accounts") ListAccountDto listAccountDto,
+    // Saving the edited user details in the database
+    @PostMapping("/admins/users/{username}/submit-user-details")
+    public String updateUserDetails(@ModelAttribute("user") UserDto userDto,
                                     Model model) {
-        // update user details
+        // update user details and add updated user details to model Attribute
         UserDto userDtoReturn = adminService.updateUserDetails(userDto);
-        // Add updated user details to model Attribute
         model.addAttribute("user", userDtoReturn);
 
-        // update user's accounts
-//        ListAccountDto returnListAccountDto = adminService.updateUserAccounts(listAccountDto);
-//        model.addAttribute("accountList", returnListAccountDto);
-        // Add all branches to the model
-        model.addAttribute("branches",getAllBranches());
-
-        return "admin/user/"+userDto.getUsername();
+        return "redirect:/admins/users/"+userDto.getUsername();
     }
+    // Saving the edited user account details in the database
+    @PostMapping("/admins/users/{username}/submit-user-account-details")
+    public String updateUserAccountDetails(@PathVariable("username") String username,
+                                           @ModelAttribute("accountList") ListAccountDto listAccountDto,
+                                           Model model) {
+        // update user account details and add updated user account details to model Attribute
+        ListAccountDto returnListAccountDto = adminService.updateUserAccounts(listAccountDto);
+        model.addAttribute("accountList", returnListAccountDto);
+
+        return "redirect:/admins/users/"+username;
+    }
+
+
 
 
     // Accounts Table for admin

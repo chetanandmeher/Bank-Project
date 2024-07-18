@@ -139,7 +139,7 @@ public class AdminService implements IUserService<UserDto, UserDto>{
                 .userId(account.getUserId())
                 .build();
     }
-    // ! ********************************** User details related methods END **********************************
+    // ! ********************************** User Accounts related methods END **********************************
 
     // ************************ Unused methods ************************
     @Override
