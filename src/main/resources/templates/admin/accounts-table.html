@@ -270,13 +270,14 @@
                                                 <td th:text="${account.accountNumber}"></td>
                                                 <td th:text="${account.customerUsername}"></td>
                                                 <td th:text="${account.type}"></td>
-                                                <td th:text="${account.branchName}"></td>
+                                                <td th:text="${account.branch}"></td>
                                                 <td th:text="${account.rateOfInterest}"></td>
                                                 <td th:text="${account.balance}"></td>
                                                 <td th:text="${account.openingDate}"></td>
                                                 <td id="editButtonCell" style="text-align: right;">
                                                     <button id="editButton" type="button" class="btn btn-primary btn-sm edit-btn"
-                                                            th:data-id="${account.accountNumber}">Edit</button>
+                                                            th:data-id="${account.accountNumber}"
+                                                            style="margin-right: 10px; width: 75px; height: 35px;"  >Edit</button>
                                                 </td> <!-- Added column with edit button-->
                                             </tr>
                                         </tbody>

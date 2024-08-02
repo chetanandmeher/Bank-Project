@@ -4,6 +4,7 @@ import com.cheta.bank.dto.ListAccountDto;
 import com.cheta.bank.dto.UserDto;
 import com.cheta.bank.dto.request.LoginRequestDto;
 import com.cheta.bank.dto.AccountDto;
+import com.cheta.bank.dto.response.TransactionResponseDto;
 import com.cheta.bank.dto.response.UserResponseDto;
 import com.cheta.bank.mysql.model.Branch;
 import com.cheta.bank.repository.BranchRepository;
@@ -17,7 +18,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
 public class AdminController {
@@ -42,9 +48,11 @@ public class AdminController {
         return "/admin/dashboard";
     }
 
+    //! ****************************** Users related mapping Start *******************************
+
     // User Table for admin
     @GetMapping("/admins/users")
-    public String getUsers(Model model) {
+    public String getAllUsers(Model model) {
         List<UserResponseDto> usersResponseDtoList = userService.getAllUsers();
         model.addAttribute("users", usersResponseDtoList);
         // Return the view name
@@ -91,11 +99,9 @@ public class AdminController {
 
         return "redirect:/admins/users/"+username;
     }
+//! ****************************** Users related mapping end *******************************
 
-
-
-
-    // Accounts Table for admin
+    //  Accounts Table for admin
     @GetMapping("/admins/accounts")
     public String accountsTable(Model model, HttpSession session) {
         // ge the login Request dto from session
@@ -107,6 +113,42 @@ public class AdminController {
         // return the view name
         return "/admin/accounts-table";
     }
+
+    //! *****************************Transactions starts*****************************
+
+    // Transaction details of all users
+    @GetMapping("/admins/transactions")
+    public String getAllTransactions(Model model, HttpSession session) {
+        // get all the transactions from database and show
+
+
+
+        model.addAttribute("fakeTransactions",fakeTransactions());
+        return "/admin/transactions-table";
+    }
+
+    // Creating fake transactions to show in the admin page
+    private List<TransactionResponseDto> fakeTransactions() {
+        List<TransactionResponseDto> fakeTransactionsList = new ArrayList<TransactionResponseDto>();
+        for(int i = 0; i <= 50;i++) {
+            TransactionResponseDto transactionResponseDto = TransactionResponseDto.builder()
+                    .id(i)
+                    .transactionId(String.valueOf(ThreadLocalRandom.current().nextInt(Integer.MAX_VALUE)))
+                    .userId(1)
+                    .accountNumber(String.valueOf(ThreadLocalRandom.current().nextInt(Integer.MAX_VALUE)))
+                    .remark("hotel")
+                    .dateTime(LocalDateTime.now())
+                    .type(Arrays.asList("Debit","Credit","Deposit").get(new Random().nextInt(3)))
+                    .status(Arrays.asList("Successful","Pending","Failed").get(new Random().nextInt(3)))
+                    .amount(ThreadLocalRandom.current().nextDouble(1000, 999999999999.99))
+                    .build();
+            fakeTransactionsList.add(transactionResponseDto);
+        }
+        return fakeTransactionsList;
+    }
+
+//! *****************************Transactions end*****************************
+
 
     @Autowired
     BranchRepository branchRepository;

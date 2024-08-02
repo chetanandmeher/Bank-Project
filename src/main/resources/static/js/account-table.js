@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to edit row
     function editRow(dataId) {
         var row = document.querySelector(`[data-id="${dataId}"]`);
-        console.log("row: " + row.children[0].innerText);
         var cells = row.querySelectorAll("td");
         // Replace the cells with input cells
         cells.forEach(function(cell) {
@@ -24,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 var input = document.createElement('input');
                 input.type = 'text';
                 input.value = cell.innerText;
+                input.style.width = '100%'; // Set width to 100% of the cell
+                input.style.height = '30px'; // Set height (adjust as needed)
+                input.style.boxSizing = 'border-box';
                 cell.innerHTML = '';
                 cell.appendChild(input);
             // change the edit button to save button
@@ -32,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
             var saveButton = document.createElement('button');
             saveButton.className = 'btn btn-success btn-sm save-btn';
             saveButton.innerText = 'Save';
+            saveButton.style.marginRight = "10px";
+            saveButton.style.width = "75px";
+            saveButton.style.height = "35px";
             saveButton.onclick = function() {
                 saveRow(dataId);
             };
@@ -55,6 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 editButton.className = 'btn btn-primary edit-btn';
                 editButton.innerText = 'Edit';
                 editButton.setAttribute('data-id', dataId);
+                editButton.style.marginRight = "10px";
+                editButton.style.width = "75px";
+                editButton.style.height = "35px";
                 editButton.addEventListener('click', function() {
                     editRow(this.getAttribute('data-id'));
                 });
