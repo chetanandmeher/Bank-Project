@@ -77,3 +77,13 @@ The details for setting up the database connections are explained in `Bank_Datab
 1. Launch the application.
 2. Use the interface to create accounts, deposit, withdraw funds, and view balances.
 3. All data is stored in the database for persistence.
+
+## Screenshots
+
+![{64EF1DC6-4671-4A85-BDD8-848C4C1C1BFB}](https://github.com/user-attachments/assets/8db5cd42-9a45-4ae0-a4d4-7dabbca932e4)
+![{460CEC01-230A-4024-8520-FAB4E6E0980E}](https://github.com/user-attachments/assets/e1d86f00-983a-4d57-ad74-05205b27885b)
+![{DEE176D5-FFC3-49CD-B9DF-0F717B71447F}](https://github.com/user-attachments/assets/dff6632c-61d5-4dd0-9389-9145607b9fc5)
+![{0C27ECCC-6CA5-4512-9033-D4E0238F3676}](https://github.com/user-attachments/assets/aa33cf7e-c73a-4dd4-a75d-ddccaebd6550)
+![{5D18A76D-EBF0-44A7-862B-AB48DC49F7E7}](https://github.com/user-attachments/assets/05ae6298-c2de-4a30-ace4-2a3b8bffa1c1)
+![{D60F8E5C-8E56-4A84-A1A2-1D4BB190D813}](https://github.com/user-attachments/assets/e8b6d630-38a9-405b-aef8-7968cd470d79)
+
