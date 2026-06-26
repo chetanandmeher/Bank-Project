@@ -53,7 +53,7 @@
 		<!-- Loading wrapper end -->
 
 		<!-- Login box start -->
-		<form th:action="@{'/login'}" method="post" th:object="${loginRequestDto}">
+		<form th:action="@{'/login'}" method="post" th:object="${loginRequestDto}" >
 			<div class="login-box">
 				<div class="login-form">
 					<a href="/" class="login-logo">
@@ -64,14 +64,16 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label">Username</label>
-						<input type="text" class="form-control" th:field = "*{username}">
+						<input type="text" class="form-control"  required th:field = "*{username}">
+						<div class="invalid-feedback">Please provide username.</div>
 					</div>
 					<div class="mb-3">
 						<div class="d-flex justify-content-between">
 							<label class="form-label">Password</label>
 							<a href="/forgot-password" class="btn btn-link ml-auto">Forgot password?</a>
 						</div>
-						<input type="password" class="form-control" th:field="*{password}">
+						<input type="password" class="form-control" th:field="*{password}" required>
+						<div class="invalid-feedback">Please provide password.</div>
 					</div>
 					<div class="login-form-actions">
 						<button type="submit" class="btn"> <span class="icon"> <i class="bi bi-arrow-right-circle"></i> </span>

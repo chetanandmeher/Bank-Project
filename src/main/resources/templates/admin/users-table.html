@@ -64,78 +64,9 @@
 
 		<!-- Page wrapper start -->
 		<div class="page-wrapper">
+			<!-- Include the sidebar fragment -->
+			<div th:replace="~{admin/sidebar :: sidebar}"></div>
 
-			<!-- Sidebar wrapper start -->
-			<nav class="sidebar-wrapper">
-
-				<!-- Sidebar brand starts -->
-				<div class="sidebar-brand">
-					<a href="../index.html" class="logo">
-						<img src="/images/logo.svg" alt="Admin Dashboards" />
-					</a>
-				</div>
-				<!-- Sidebar brand starts -->
-
-				<!-- Sidebar menu starts -->
-				<div class="sidebar-menu">
-					<div class="sidebarMenuScroll">
-						<ul>
-							<li class="sidebar-dropdown">
-								<a href="#">
-									<i class="bi bi-house"></i>
-									<span class="menu-text">Dashboards</span>
-								</a>
-								<div class="sidebar-submenu">
-									<ul>
-										<li>
-											<a href="../index.html">Analytics</a>
-										</li>
-										<li>
-											<a href="reports.html">Reports</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li>
-								<a href="/users-table">
-									<i class="bi bi-people"></i>
-									<span class="menu-text">Users</span>
-								</a>
-							</li>
-							<li>
-								<a href="/accounts-table">
-									<i class="bi bi-person-square"></i>
-									<span class="menu-text">Accounts</span>
-								</a>
-							</li>
-							<li class="sidebar-dropdown">
-								<a href="#">
-									<i class="bi bi-bank"></i>
-									<span class="menu-text">Master</span>
-								</a>
-								<div class="sidebar-submenu">
-									<ul>
-										<li>
-											<a href="accordions.html">States</a>
-										</li>
-										<li>
-											<a href="alerts.html">Districts</a>
-										</li>
-										<li>
-											<a href="buttons.html">Cities</a>
-										</li>
-										<li>
-											<a href="badges.html">Branches</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- Sidebar menu ends -->
-
-			</nav>
 			<!-- Sidebar wrapper end -->
 
 			<!-- *************
@@ -159,7 +90,7 @@
 					</ol>
 					<!-- Breadcrumb end -->
 
-					<!-- Header actions ccontainer start -->
+					<!-- Header actions container start -->
 					<div class="header-actions-container">
 
 						<!-- Search container start -->
@@ -297,12 +228,9 @@
 
 				</div>
 				<!-- Content wrapper scroll end -->
-
 			</div>
-			<!-- *************
-				************ Main container end *************
-			************* -->
 
+			<!--************ Main container end *************-->
 		</div>
 		<!-- Page wrapper end -->
 

@@ -62,82 +62,11 @@
 <!-- Page wrapper start -->
 <div class="page-wrapper">
 
-	<!-- Sidebar wrapper start -->
-	<nav class="sidebar-wrapper">
+<!--	************ Sidebar menu start *************-->
+<!--	fragment Sidebar -->
+	<div th:replace="~{admin/sidebar :: sidebar}"></div>
 
-		<!-- Sidebar brand starts -->
-		<div class="sidebar-brand">
-			<a href="../index.html" class="logo">
-				<img src="/images/logo.svg" alt="Admin Dashboards" />
-			</a>
-		</div>
-		<!-- Sidebar brand starts -->
 
-		<!-- Sidebar menu starts -->
-		<div class="sidebar-menu">
-			<div class="sidebarMenuScroll">
-				<ul>
-					<li class="sidebar-dropdown">
-						<a href="#">
-							<i class="bi bi-house"></i>
-							<span class="menu-text">Dashboards</span>
-						</a>
-						<div class="sidebar-submenu">
-							<ul>
-								<li>
-									<a href="../index.html">Analytics</a>
-								</li>
-								<li>
-									<a href="reports.html">Reports</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<a href="/users-table">
-							<i class="bi bi-people"></i>
-							<span class="menu-text">Users</span>
-						</a>
-					</li>
-					<li>
-						<a href="/accounts-table">
-							<i class="bi bi-person-square"></i>
-							<span class="menu-text">Accounts</span>
-						</a>
-					</li>
-					<li class="sidebar-dropdown">
-						<a href="#">
-							<i class="bi bi-bank"></i>
-							<span class="menu-text">Master</span>
-						</a>
-						<div class="sidebar-submenu">
-							<ul>
-								<li>
-									<a href="accordions.html">States</a>
-								</li>
-								<li>
-									<a href="alerts.html">Districts</a>
-								</li>
-								<li>
-									<a href="buttons.html">Cities</a>
-								</li>
-								<li>
-									<a href="badges.html">Branches</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li>
-						<a href="/customers/transactions">
-							<i class="bi bi-arrow-left-right"></i>
-							<span class="menu-text">Transaction</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-</div>
 <!-- Sidebar menu ends -->
 
 
@@ -146,51 +75,52 @@
 <!-- *************
     ************ Main container start *************
 ************* -->
-<div class="main-container">
+	<div class="main-container">
 
 	<!-- Page header starts -->
-	<div class="page-header">
+		<div class="page-header">
 
-		<div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
+			<div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
 
 		<!-- Breadcrumb start -->
-		<ol class="breadcrumb d-md-flex d-none">
-			<li class="breadcrumb-item">
-				<i class="bi bi-house"></i>
-				<a href="../index.html">Home</a>
-			</li>
-			<li class="breadcrumb-item">
-				<a th:href="@{/admins/users}">User</a>
-			</li>
-			<li class="breadcrumb-item breadcrumb-active" aria-current="page">User Details</li>
-		</ol>
+			<ol class="breadcrumb d-md-flex d-none">
+				<li class="breadcrumb-item">
+					<i class="bi bi-house"></i>
+					<a href="../index.html">Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a th:href="@{/admins/users}">User</a>
+				</li>
+				<li class="breadcrumb-item breadcrumb-active" aria-current="page">User Details</li>
+			</ol>
 		<!-- Breadcrumb end -->
 
 		<!-- Header actions container start -->
-		<div class="header-actions-container">
+			<div class="header-actions-container">
 
 			<!-- Search container start -->
-			<div class="search-container">
+				<div class="search-container">
 
-				<!-- Search input group start -->
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search anything">
-					<button class="btn" type="button">
-						<i class="bi bi-search"></i>
-					</button>
+					<!-- Search input group start -->
+					<div class="input-group">
+						<label for="searchInput" class="visually-hidden">Search</label>
+						<input type="text" class="form-control" id="searchInput" placeholder="Search anything">
+						<button class="btn" type="button">
+							<i class="bi bi-search"></i>
+						</button>
+					</div>
+					<!-- Search input group end -->
+
 				</div>
-				<!-- Search input group end -->
-
-			</div>
 			<!-- Search container end -->
 
 			<!-- Leads start -->
-			<a href="orders.html" class="leads d-none d-xl-flex">
-				<div class="lead-details">You have <span class="count"> 21 </span> new leads </div>
-				<span class="lead-icon"><i
-						class="bi bi-bell-fill animate__animated animate__swing animate__infinite infinite"></i><b
-						class="dot animate__animated animate__heartBeat animate__infinite"></b></span>
-			</a>
+				<a href="orders.html" class="leads d-none d-xl-flex">
+					<div class="lead-details">You have <span class="count"> 21 </span> new leads </div>
+					<span class="lead-icon"><i
+							class="bi bi-bell-fill animate__animated animate__swing animate__infinite infinite"></i><b
+							class="dot animate__animated animate__heartBeat animate__infinite"></b></span>
+				</a>
 			<!-- Leads end -->
 
 			<!-- Header actions start -->
@@ -245,9 +175,8 @@
 	<!-- Page header ends -->
 
 	<!-- Content wrapper scroll start -->
-	<div class="content-wrapper-scroll">
-
-		<!-- Content wrapper start -->
+		<div class="content-wrapper-scroll">
+					<input type="text" class="form-control" placeholder="Search anything">
 		<div class="content-wrapper">
 
 			<!-- Row start -->
@@ -517,6 +446,7 @@
         ************ Main container end *************
     ************* -->
 
+	</div>
 </div>
 <!-- Page wrapper end -->
 

@@ -31,7 +31,7 @@ public class LoginController {
     public String dashboard(@ModelAttribute("loginRequestDto") LoginRequestDto loginRequestDto, HttpSession session) {
         // get the user's role from the database and check it it is admin
         UserCredential userCredential = userCredentialRepository.findByUsername(loginRequestDto.getUsername());
-        if (userCredential != null) {
+        if (userCredential != null && userCredential.getPassword().equals(loginRequestDto.getPassword())) {
             session.setAttribute("loginRequestDto", loginRequestDto);
             switch (userCredential.getUserRole()) {
                 case "Admin" -> {
@@ -48,3 +48,6 @@ public class LoginController {
         return "index";
     }
 }
+
+
+

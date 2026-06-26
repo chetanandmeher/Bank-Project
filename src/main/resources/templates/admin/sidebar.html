@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<!-- Sidebar Fragment -->
+<nav th:fragment="sidebar" class="sidebar-wrapper">
+    <!-- Sidebar brand starts -->
+    <div class="sidebar-brand">
+        <a href="/admins/dashboard" class="logo">
+            <img src="/images/logo.svg" alt="Admin Dashboards" />
+        </a>
+    </div>
+    <!-- Sidebar brand starts -->
+
+    <!-- Sidebar menu starts -->
+    <div class="sidebar-menu">
+        <div class="sidebarMenuScroll">
+            <ul>
+                <li class="sidebar-dropdown active">
+                    <a href="#">
+                        <i class="bi bi-house"></i>
+                        <span class="menu-text">Dashboards</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="../index.html" class="current-page">Analytics</a>
+                            </li>
+                            <li>
+                                <a href="reports.html">Reports</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a th:href="@{/admins/users}">
+                        <i class="bi bi-people"></i>
+                        <span class="menu-text">Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admins/accounts">
+                        <i class="bi bi-person-square"></i>
+                        <span class="menu-text">Accounts</span>
+                    </a>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="bi bi-bank"></i>
+                        <span class="menu-text">Master</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="/state-table">States</a>
+                            </li>
+                            <li>
+                                <a href="/district-table">Districts</a>
+                            </li>
+                            <li>
+                                <a href="buttons.html">Cities</a>
+                            </li>
+                            <li>
+                                <a href="badges.html">Branches</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="/admins/transactions">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <span class="menu-text">Transaction</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Sidebar menu ends -->
+</nav>
+</body>
+</html>

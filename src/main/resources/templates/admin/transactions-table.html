@@ -65,47 +65,8 @@
 <!-- Page wrapper start -->
 <div class="page-wrapper">
 
-    <!-- Sidebar wrapper start -->
-    <nav class="sidebar-wrapper">
-
-        <!-- Sidebar brand starts -->
-        <div class="sidebar-brand">
-            <a href="../index.html" class="logo">
-                <img src="/images/logo.svg" alt="Admin Dashboards"/>
-            </a>
-        </div>
-        <!-- Sidebar brand starts -->
-
-        <!-- Sidebar menu starts -->
-        <div class="sidebar-menu">
-            <div class="sidebarMenuScroll">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-house"></i>
-                            <span class="menu-text">Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a th:href="@{/customers/accounts}">
-                            <i class="bi bi-person-square"></i>
-                            <span class="menu-text">Accounts</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-arrow-left-right"></i>
-                            <span class="menu-text">Transaction</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- Sidebar menu ends -->
-
-    </nav>
-    <!-- Sidebar wrapper end -->
-
+    <!-- Include the sidebar fragment -->
+    <div th:replace="~{admin/sidebar :: sidebar}"></div>
     <!-- *************
         ************ Main container start *************
     ************* -->
@@ -206,7 +167,7 @@
 
         <!-- Content wrapper scroll start -->
         <div class="content-wrapper-scroll">
-            `
+
             <!-- Content wrapper start -->
             <div class="content-wrapper">
 
